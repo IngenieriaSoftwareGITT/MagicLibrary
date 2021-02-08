@@ -1,3 +1,4 @@
+# Opciones de gitignore por defecto, cuando se genera automáticamente al crear un repositorio en GitHub, con la opción Java
 # Compiled class file
 *.class
 
@@ -12,6 +13,8 @@
 
 # Package Files #
 *.jar
+# Añado la excepción de la librería para el wrapper de gradle (ésta no se pone por defecto)
+!gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -21,3 +24,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#Opciones añadidas por ser un proyecto Gradle
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
