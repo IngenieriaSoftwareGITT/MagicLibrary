@@ -18,7 +18,7 @@ public interface Dao<T> {
 	 * @param id identificador unívoco de la entidad buscada
 	 * @return el objeto correspondiente al id, encapsulado en un objeto Optional (facilita la gestión de la respuesta cuando no se ha encontrado la entidad en el repositorio de persistencia)
 	 */
-	Optional<T> findById(long primaryKey);
+	Optional<T> findById(String primaryKey);
 	/**
 	 * Operación de lectura
 	 * Encuentra todas las entidades de tipo T del repositorio
@@ -49,7 +49,7 @@ public interface Dao<T> {
 	 * Elimina del repositorio la entidad cuyo identificador unívoco corresponde con el parámetro
 	 * @param id
 	 */
-	void delete (long id);
+	void delete (String id);
 	
 
 }

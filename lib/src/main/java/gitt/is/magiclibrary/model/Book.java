@@ -5,13 +5,15 @@ package gitt.is.magiclibrary.model;
 
 /**
  * @author Isabel Román
+ * Entidad para los datos de un libro, un tipo concreto de título.
+ * Hereda de title pero se guarda en una tabla diferente en la base de datos
  *
  */
 import javax.persistence.Entity;
 
 import java.sql.Date;
 
-import javax.persistence.DiscriminatorValue;
+//import javax.persistence.DiscriminatorValue;
 
 
 @Entity
@@ -19,10 +21,14 @@ import javax.persistence.DiscriminatorValue;
 
 public class Book extends Title 
 {
+   /**
+	 * Aceptado el número de serie por defecto
+	 */
+   private static final long serialVersionUID = 1L;
    private String isbn;
    private int pages;
 
-   public Book( Long id, String name, String author, Date publishedAt, String isbn,int pages ) 
+   public Book( String id, String name, String author, Date publishedAt, String isbn,int pages ) 
    {
       super( id, name, author, publishedAt );
       this.isbn = isbn;
@@ -62,6 +68,6 @@ public class Book extends Title
    }
 	@Override
 	public String toString() {
-		return super.toString()+" Book: isbn= "+isbn+" pages= "+pages;
+		return super.toString()+" Book[isbn= "+isbn+" pages= "+pages+"]\n";
 	}
 }

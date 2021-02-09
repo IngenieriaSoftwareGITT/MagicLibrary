@@ -5,13 +5,15 @@ package gitt.is.magiclibrary.model;
 
 /**
  * @author Isabel Román
+ * Entidad para almacenar los datos de una grabación de audio.
+ * Hereda de Title, los datos particulares a la clase AudioRecord se guardan en una tabla, pero los comunes (title) se guardan en otra
  *
  */
 import javax.persistence.Entity;
 
 import java.sql.Date;
 
-import javax.persistence.DiscriminatorValue;
+//import javax.persistence.DiscriminatorValue;
 
 
 @Entity
@@ -19,11 +21,15 @@ import javax.persistence.DiscriminatorValue;
 
 public class AudioRecord extends Title 
 {
+   /**
+	 * Añadido número de serie por defecto
+	 */
+   private static final long serialVersionUID = 1L;
    private String label;
    private int duration;
    private String tracks;
 
-   public AudioRecord(Long id, String name, String author, Date publishedAt, String label,int duration, String tracks) 
+   public AudioRecord(String id, String name, String author, Date publishedAt, String label,int duration, String tracks) 
    {
       super(id, name, author, publishedAt );
       this.label = label;
@@ -65,6 +71,7 @@ public class AudioRecord extends Title
    }
 	@Override
 	public String toString() {
-		return super.toString()+" AudioRecord: label= "+label+" duration= "+duration+" tracks= "+tracks;
+		return super.toString()+" AudioRecord[label= "+label+" duration= "+duration+" tracks= "+tracks+"]\n";
+	
 	}
 }
