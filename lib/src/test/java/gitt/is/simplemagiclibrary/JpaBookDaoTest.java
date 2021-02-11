@@ -16,18 +16,19 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import gitt.is.simplemagiclibrary.Book;
+import gitt.is.magiclibrary.model.Book;
+import gitt.is.magiclibrary.model.JpaBookDao;
 
 
 /**
  * @author Isabel Román
- *
+ * Test para probar JpaBookDao, clase para manejar los libros de la biblioteca
  */
 class JpaBookDaoTest {
-	private static final Logger log = Logger.getLogger(Library.class.toString());
+	private static final Logger log = Logger.getLogger(JpaBookDaoTest.class.getName());
 	static Book book1;
 	static Book book2;
-//	static JpaBookDao undertest;
+	static JpaBookDao undertest;
 	
 
 	/**
@@ -40,8 +41,8 @@ class JpaBookDaoTest {
 		  log.info("Libro 1 creado: "+book1);
 		  book2 = new Book("Ingeniería del Software: un enfoque práctico","Ian Roger S. Pressman", new Date(110,0,1), "otroisbn", 200);
 		  log.info("Libro 2 creado: "+book2);
-		//  undertest = JpaBookDao.getInstance();
-		//  log.info("JpaBookDao bajo test creada");
+		  undertest = new JpaBookDao();
+		  log.info("JpaBookDao bajo test creada");
 	}
 
 	/**
@@ -66,7 +67,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#findById(long)}.
+	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#findById(String)}.
 	 */
 	@Test
 	final void testFindById() {
@@ -79,9 +80,12 @@ class JpaBookDaoTest {
 	@Test
 	final void testFindAll() {
 		log.info("Entro en el método para probar el método findAll");
-		JpaBookDao.getInstance().save(book1);
-		JpaBookDao.getInstance().save(book2);
-		List<Book> books = JpaBookDao.getInstance().findAll();
+		log.info("Persisto el libro 1 "+book1);
+		undertest.save(book1);
+		
+		log.info("Persisto el libro 2 "+book2);
+		undertest.save(book2);
+		List<Book> books = undertest.findAll();
 		assertTrue(books.size()==2,"He metido dos libros pero hay "+books.size());
 
 	}
@@ -92,22 +96,21 @@ class JpaBookDaoTest {
 	@Test
 	final void testSave() {
 		log.info("Entro en el método para probar el método save");
-		JpaBookDao.getInstance().save(book1);
+		undertest.save(book1);
 		log.info("Persisto "+book1);
 		
 	
-		//recuperado=undertest.findBookByAuthor("Ian Sommerville");
+		Optional<Book> recuperado=undertest.findById(book1.getId());
 		
-		if(JpaBookDao.getInstance().findById(1L).isPresent()){
-			Book recuperado=JpaBookDao.getInstance().findById(1L).get();
+		if(recuperado.isPresent()){
 			
 			log.info("Recupero "+recuperado);
-			//	assertEquals(recuperado,book1);
-			assertEquals(recuperado.getAuthor(),"Ian Sommerville");
-			assertEquals(recuperado.getName(),"Ingeniería del Software");
-			assertEquals(recuperado.getPages(),500);
-			assertEquals(recuperado.getPublishedAt(),new Date(111,0,1));
-			assertEquals(recuperado.getIsbn(),"miisbn");	
+		
+			assertEquals(recuperado.get().getAuthor(),"Ian Sommerville");
+			assertEquals(recuperado.get().getName(),"Ingeniería del Software");
+			assertEquals(recuperado.get().getPages(),500);
+			assertEquals(recuperado.get().getPublishedAt(),new Date(111,0,1));
+			assertEquals(recuperado.get().getIsbn(),"miisbn");	
 		}else {
 			fail("No estaba el libro");
 		}
@@ -129,17 +132,17 @@ class JpaBookDaoTest {
 	final void testDeleteBook() {
 		log.info("Entro en el método para probar el método delete");
 		
-		JpaBookDao.getInstance().save(book1);
+		undertest.save(book1);
 		log.info("Persisto "+book1);
-		Optional<Book> recuperado = JpaBookDao.getInstance().findById(book1.getId());	
+		Optional<Book> recuperado = undertest.findById(book1.getId());	
 		if(recuperado.isPresent()){
 			log.info("El libro está, lo voy a eliminar");		
 			
-			JpaBookDao.getInstance().delete(recuperado.get());
+			undertest.delete(recuperado.get());
 		}else {
 			fail("No se ha recuperado bien el libro");
 		}
-		recuperado = JpaBookDao.getInstance().findById(book1.getId());	
+		recuperado = undertest.findById(book1.getId());	
 		assertFalse(recuperado.isPresent(),"El libro lo había borrado, no puedo recuperarlo");
 			
 	}
@@ -160,9 +163,9 @@ class JpaBookDaoTest {
 	final void testFindBookByAuthor() {
 		log.info("Entro en el método para probar el método findBookByAuthor");
 		
-		JpaBookDao.getInstance().save(book1);
+		undertest.save(book1);
 		log.info("Persisto "+book1);
-		Optional<Book> recuperado = JpaBookDao.getInstance().findBookByAuthor(book1.getAuthor());	
+		Optional<Book> recuperado = undertest.findBookByAuthor(book1.getAuthor());	
 		assertTrue(recuperado.isPresent());
 		assertEquals(recuperado.get().getAuthor(),book1.getAuthor(),"No tienen el mismo autor");
 	}
