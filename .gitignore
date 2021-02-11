@@ -33,6 +33,6 @@ hs_err_pid*
 # Ignore Gradle build output directory
 build
 
-# Ingnora configuración del proyecto eclipse
+# Ignora configuración del proyecto eclipse
 .project
 .settings
