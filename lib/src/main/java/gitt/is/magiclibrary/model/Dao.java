@@ -1,21 +1,19 @@
-/**
- * 
- */
 package gitt.is.magiclibrary.model;
 
 import java.util.Optional;
 import java.util.List;
 /**
  * @author Isabel Román
- * Esta interfaz declara un modo genérico de manejo de la persistencia de entidades del tipo T
- * Básicamente declara operaciones CRUD (crear, leer, actualizar y borrar la entidad)
+ * @version 0.0
+ * <p>Esta interfaz declara un modo genérico de manejo de la persistencia de entidades del tipo T</p>
+ * <p>Básicamente declara operaciones CRUD (crear, leer, actualizar y borrar la entidad)</p>
  *
  */
 public interface Dao<T> {
 	/**
 	 * Operación de lectura
 	 * Devuelve la entidad de tipo T correspondiente al identificador pasado como parámetro
-	 * @param id identificador unívoco de la entidad buscada
+	 * @param primaryKey identificador unívoco de la entidad buscada
 	 * @return el objeto correspondiente al id, encapsulado en un objeto Optional (facilita la gestión de la respuesta cuando no se ha encontrado la entidad en el repositorio de persistencia)
 	 */
 	Optional<T> findById(String primaryKey);
@@ -35,7 +33,7 @@ public interface Dao<T> {
 	/**
 	 * Operación de escritura, actualiza la entidad pasada como parámetro
 	 * @param t entidad a modificar
-	 * @param params cambios a realizar
+	 * 
 	 */
 	void update(T t);
 	/**
@@ -47,7 +45,7 @@ public interface Dao<T> {
 	/**
 	 * Operación de borrado
 	 * Elimina del repositorio la entidad cuyo identificador unívoco corresponde con el parámetro
-	 * @param id
+	 * @param id identificador unívoco de la entidad a borrar
 	 */
 	void delete (String id);
 	

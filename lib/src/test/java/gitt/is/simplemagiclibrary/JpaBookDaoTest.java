@@ -25,7 +25,11 @@ import gitt.is.magiclibrary.model.JpaBookDao;
  * Test para probar JpaBookDao, clase para manejar los libros de la biblioteca
  */
 class JpaBookDaoTest {
+	/**
+	 * Para trazar el código {@link java.util.logging}
+	 */
 	private static final Logger log = Logger.getLogger(JpaBookDaoTest.class.getName());
+	
 	static Book book1;
 	static Book book2;
 	static JpaBookDao undertest;
@@ -67,7 +71,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#findById(String)}.
+	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#findById(String)}.
 	 */
 	@Test
 	final void testFindById() {
@@ -75,7 +79,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#findAll()}.
+	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#findAll()}.
 	 */
 	@Test
 	final void testFindAll() {
@@ -91,7 +95,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#save(gitt.is.simplemagiclibrary.Book)}.
+	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#save(gitt.is.magiclibrary.model.Book)}.
 	 */
 	@Test
 	final void testSave() {
@@ -118,7 +122,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#update(gitt.is.simplemagiclibrary.Book, java.lang.String[])}.
+	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#update(gitt.is.magiclibrary.model.Book)}.
 	 */
 	@Test
 	final void testUpdate() {
@@ -126,7 +130,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#delete(gitt.is.simplemagiclibrary.Book)}.
+	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#delete(gitt.is.magiclibrary.model.Book)}.
 	 */
 	@Test
 	final void testDeleteBook() {
@@ -148,7 +152,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#delete(long)}.
+	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#delete(java.lang.String)}.
 	 */
 	@Test
 	final void testDeleteLong() {
@@ -156,7 +160,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.simplemagiclibrary.JpaBookDao#findBookByAuthor(java.lang.String)}.
+	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#findBookByAuthor(java.lang.String)}.
 	 */
 	
 	@Test

@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package gitt.is.magiclibrary.model;
 
 import java.util.function.Consumer;
@@ -13,20 +11,38 @@ import javax.persistence.Persistence;
 
 /**
  * @author Isabel Román
- * @see https://www.baeldung.com/java-dao-pattern
- * Clase que incluye funcionalidades comunes a todos los DAO basados en la api JPA
- *
+ * @version 0.0
+ * <p> Esta es la clase incluye funcionalidades comunes a los DAO que utilizan la API JPA {@link javax.persistence}</p>
+ * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p> 
  */
 public class JpaDaoFeatures {
+	/**
+	 * Para trazar el código {@link java.util.logging}
+	 */
 	private static final Logger log = Logger.getLogger(JpaDaoFeatures.class.toString());
+	/**
+	 * Referencia a la fábrica de gestores de entidad
+	 */
 	private static EntityManagerFactory emf=null;
+	/**
+	 * Referencia al gestor de entidad
+	 */
 	private static EntityManager myEntityManager=null;
+	/**
+	 * Referencia a la instancia única
+	 */
 	private static JpaDaoFeatures myInstance=null;
 	
-	
+	/**
+	 * Constructor simple
+	 */
 	private JpaDaoFeatures() {
 		
 	}
+	/**
+	 * Esta clase sigue el patrón singleton <a href="https://www.javacodegeeks.com/2015/09/singleton-design-pattern.html">Patrón Singleton</a>
+	 * @return referencia al ejemplar único
+	 */
 	public static JpaDaoFeatures getInstance() {
 		if (myInstance==null){
 			myInstance = new JpaDaoFeatures();
@@ -47,7 +63,10 @@ public class JpaDaoFeatures {
 		}
 		return myInstance;
 	}
-
+/**
+ * Ejecuta la acción dentro de una transacción JPA
+ * @param action Acción a ejecutar
+ */
 	public void executeInsideTransaction(Consumer<EntityManager> action) {
 		
 		
@@ -62,7 +81,10 @@ public class JpaDaoFeatures {
             throw e;
         }
     }
-	
+	/**
+	 * 
+	 * @return referencia al gestor de entidad {@link javax.persistence.EntityManager}
+	 */
 	public EntityManager getEntityManager() {
 		return myEntityManager;
 		
