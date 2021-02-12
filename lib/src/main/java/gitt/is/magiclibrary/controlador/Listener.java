@@ -1,9 +1,9 @@
 /**
  * 
  */
-package gitt.is.magiclibrary.vista;
+package gitt.is.magiclibrary.controlador;
 
-
+import gitt.is.magiclibrary.vista.*;
 
 
 
@@ -20,7 +20,7 @@ import java.awt.event.*;        //for action events
  */
 public class Listener implements ActionListener{
 	private static Logger log=Logger.getLogger(Listener.class.getName());
-	private TitleView panel;
+	private NewTitleView panel;
 	 public void actionPerformed(ActionEvent e) {
 		    log.info("Recibido evento "+e+" en el Listener\n");
 	        String prefix = "Recibido nombre ";
@@ -29,7 +29,7 @@ public class Listener implements ActionListener{
 	        panel.printMessage(prefix+panel.getName());
 	        
 	    }
-	 public void setJFrame(TitleView panel) {
+	 public void setJFrame(NewTitleView panel) {
 		 this.panel = panel;
 		 
 	 }

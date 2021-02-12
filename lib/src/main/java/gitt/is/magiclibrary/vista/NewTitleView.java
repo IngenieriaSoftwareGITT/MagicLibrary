@@ -7,16 +7,17 @@ import javax.swing.*;
 
 import javax.swing.JButton;
 
+import gitt.is.magiclibrary.controlador.Listener;
 
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 
 
 /**
- * @author isa
+ * @author Isabel Román
  *
  */
-public class TitleView extends JPanel{
+public class NewTitleView extends JPanel{
 	protected static final String name = "Nombre";
 	protected static final String author = "Autor";
 	protected static final String publishedAt = "Fecha de publicación";
@@ -31,7 +32,7 @@ public class TitleView extends JPanel{
 	 * 
 	 * @param listener referencia a la clase que atiende las acciones ocurridas en este panel
 	 */
-    TitleView(ActionListener listener){
+    NewTitleView(ActionListener listener){
     	 setLayout(new BorderLayout());
 
          //creamos una entrada de texto regular para el Nombre del título
@@ -130,7 +131,7 @@ public class TitleView extends JPanel{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         Listener listener = new Listener();
-        TitleView titleView = new TitleView(listener);
+        NewTitleView titleView = new NewTitleView(listener);
         listener.setJFrame(titleView);
 
         //Add content to the window.

@@ -14,14 +14,34 @@ import javax.swing.*;
 /* TopLevelDemo.java requires no other files. */
 public class MagicLibraryView {
     /**
-     * Create the GUI and show it.  For thread safety,
+     * Crea el JFrame principal de la aplicación MagicLibrary
+     * Muestra la GUI.
+     * For thread safety,
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    private static void createAndShowGUI() {
-        //Create and set up the window. Jframe
-        JFrame frame = new JFrame("MagicLibrary GUI");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private static JFrame myFrame=null;
+	private static MagicLibraryView myInstance= null;
+	
+	private MagicLibraryView() {
+		
+	}
+	
+	public static MagicLibraryView getInstance() {
+		if (myInstance==null){
+			myInstance=new MagicLibraryView();
+			//Create and set up the window. JFrame
+	        myFrame = new JFrame("MagicLibrary GUI");
+	        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        //Display the window.
+	        myFrame.pack();
+	        myFrame.setVisible(true);
+		}
+		return myInstance;
+	}
+	
+    public void createAndShowGUI() {
+        
 
         //Create the menu bar.  Make it have a green background.
         JMenuBar greenMenuBar = new JMenuBar();
@@ -36,12 +56,13 @@ public class MagicLibraryView {
         yellowLabel.setPreferredSize(new Dimension(200, 180));
 
         //Set the menu bar and add the label to the content pane.
-        frame.setJMenuBar(greenMenuBar);
-        frame.getContentPane().add(yellowLabel, BorderLayout.CENTER);
+        myFrame.setJMenuBar(greenMenuBar);
+        myFrame.getContentPane().add(yellowLabel, BorderLayout.CENTER);
 
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+       
+    }
+    public void addFrame(JFrame frame) {
+    	myFrame.add(frame);
     }
 
     public static void main(String[] args) {
@@ -49,7 +70,7 @@ public class MagicLibraryView {
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+                MagicLibraryView.getInstance().createAndShowGUI();
             }
         });
     }
