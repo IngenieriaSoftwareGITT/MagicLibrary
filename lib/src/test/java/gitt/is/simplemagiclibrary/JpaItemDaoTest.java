@@ -24,6 +24,9 @@ import gitt.is.magiclibrary.model.*;
  *
  */
 class JpaItemDaoTest {
+	/**
+	 * Para trazar el código {@link java.util.logging}
+	 */
 	private static final Logger log = Logger.getLogger(JpaItemDaoTest.class.getName());
 	static Item item1;
 	static Item item2;
