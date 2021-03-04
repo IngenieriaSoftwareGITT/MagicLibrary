@@ -1,4 +1,4 @@
-package gitt.is.magiclibrary.model;
+package edu.gitt.is.magiclibrary.model;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,12 +7,14 @@ import java.util.logging.*;
 
 import javax.persistence.TypedQuery;
 
+import edu.gitt.is.magiclibrary.model.entities.Item;
+
 import javax.persistence.PersistenceContext;
 
 /**
  * @author Isabel Román
  * @version 0.0
- * <p> Esta es la clase para manejar las entidades de tipo Item (ejemplar) {@link gitt.is.magiclibrary.model.Item} y está codificada usando la API JPA {@link javax.persistence}</p>
+ * <p> Esta es la clase para manejar las entidades de tipo Item (ejemplar) {@link edu.gitt.is.magiclibrary.model.entities.Item} y está codificada usando la API JPA {@link javax.persistence}</p>
  * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p> 
  */
 @PersistenceContext(unitName = "h2-eclipselink")

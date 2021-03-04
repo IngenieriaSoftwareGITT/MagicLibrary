@@ -1,4 +1,4 @@
-package gitt.is.magiclibrary.model;
+package edu.gitt.is.magiclibrary.model.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -69,12 +69,12 @@ public class Item implements Serializable{
 	private Title itemInfo;
 	
 	/**
-	 * Estado del ejemplar {@link gitt.is.magiclibrary.model.Item.ItemState}
+	 * Estado del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Item.ItemState}
 	 */
 	@Enumerated(EnumType.STRING)
 	private ItemState status;
 	/**
-	 * Constructor de ejemplar simple, se construye siempre en estado disponible {@link gitt.is.magiclibrary.model.Item.ItemState}
+	 * Constructor de ejemplar simple, se construye siempre en estado disponible {@link edu.gitt.is.magiclibrary.model.entities.Item.ItemState}
 	 */
 	
 	public Item() {
@@ -83,8 +83,8 @@ public class Item implements Serializable{
 	}
 	/**
 	 * 
-	 * @param title El título concreto de este ejemplar {@link gitt.is.magiclibrary.model.Title}
-	 * @param status Estado en el que se construye el ejemplar {@link gitt.is.magiclibrary.model.Item.ItemState}
+	 * @param title El título concreto de este ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	 * @param status Estado en el que se construye el ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Item.ItemState}
 	 */
 	public Item(Title title, ItemState status) {
 		super();
@@ -92,8 +92,8 @@ public class Item implements Serializable{
 		this.status = status;
 	}
 	/**
-	 * Se construye en estado disponible {@link gitt.is.magiclibrary.model.Item.ItemState}
-	 * @param title El título concreto del ejemplar {@link gitt.is.magiclibrary.model.Title}
+	 * Se construye en estado disponible {@link edu.gitt.is.magiclibrary.model.entities.Item.ItemState}
+	 * @param title El título concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	 */
 	public Item(Title title) {
 		super();
@@ -102,21 +102,21 @@ public class Item implements Serializable{
 	}
 	/**
 	 * 
-	 * @return El título concreto del ejemplar {@link gitt.is.magiclibrary.model.Title}
+	 * @return El título concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	 */
 	public Title getItemInfo() {
 		return itemInfo;
 	}
 	/**
 	 * 
-	 * @param title El título concreto del ejemplar {@link gitt.is.magiclibrary.model.Title}
+	 * @param title El título concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	 */
 	public void setTitle(Title title) {
 		this.itemInfo = title;
 	}
 	/**
 	 * 
-	 * @return Estado del ejemplar {@link gitt.is.magiclibrary.model.Item.ItemState}
+	 * @return Estado del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Item.ItemState}
 	 */
 	public ItemState getStatus() {
 		return status;
@@ -137,7 +137,7 @@ public class Item implements Serializable{
 	}
 	/**
 	 * 
-	 * @param status Estado {@link gitt.is.magiclibrary.model.Item.ItemState}
+	 * @param status Estado {@link edu.gitt.is.magiclibrary.model.entities.Item.ItemState}
 	 */
 	public void setStatus(ItemState status) {
 		this.status = status;

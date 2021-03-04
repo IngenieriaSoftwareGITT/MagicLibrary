@@ -1,4 +1,4 @@
-package gitt.is.magiclibrary.model;
+package edu.gitt.is.magiclibrary.model.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,7 +9,8 @@ import javax.persistence.Table;
 //import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 import java.io.Serializable;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -58,10 +59,10 @@ public class Title implements Serializable{
 
 	 /**
 	    * Asignación manual del id
-	    * @param id identificador unívoco de la grabación audio {@link gitt.is.magiclibrary.model.Title}
-	    * @param name Nombre	{@link gitt.is.magiclibrary.model.Title}
-	    * @param author Autor {@link gitt.is.magiclibrary.model.Title}
-	    * @param publishedAt Fecha de publicación {@link gitt.is.magiclibrary.model.Title}
+	    * @param id identificador unívoco de la grabación audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	    * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
+	    * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	    */
 	public Title(String id, String name, String author, Date publishedAt) {
 		super();
@@ -72,9 +73,9 @@ public class Title implements Serializable{
 	}
 	  /**
 	    * Asigna automática el id
-	    * @param name Nombre	{@link gitt.is.magiclibrary.model.Title}
-	    * @param author Autor {@link gitt.is.magiclibrary.model.Title}
-	    * @param publishedAt Fecha de publicación {@link gitt.is.magiclibrary.model.Title}
+	    * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
+	    * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	    */
 	public Title(String name, String author, Date publishedAt) {
 		super();
@@ -134,37 +135,48 @@ public class Title implements Serializable{
 	 * 
 	 * @param id Establece el identificador unívoco
 	 */
-	public void SetId(String id) {
+	public void setId(String id) {
 		this.id=id;
 	}
+
 /**
  * 
  * @param name Nombre del título
  */
-	public void getName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-/**
- * 
- * @param author Autor
- */
-	public void getAuthor(String author) {
-		this.author = author;
+	/**
+	 * 
+	 * @param author Autor
+	 */
+		public void setAuthor(String author) {
+			this.author = author;
+		}
+
+
+	/**
+	 * 
+	 * @param date Fecha de publicación 
+	 */
+	public void setPublishedAt(Date date) {
+		this.publishedAt = date;
 	}
 	/**
 	 * 
 	 * @param date Fecha de publicación 
 	 */
-	public void getPublishedAt(Date date) {
-		this.publishedAt = date;
+	public Date getPublishedAt(Date date) {
+		return this.publishedAt;
 	}
 	/**
 	 * 
-	 * @param items Lista de ejemplares de este tíutlo
+	 * @param items Lista de ejemplares de este título
 	 */
-	public void getItems(List<Item> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+
 	/**
 	 * 
 	 * @param item Nuevo ejemplar del título para añadir a la lista

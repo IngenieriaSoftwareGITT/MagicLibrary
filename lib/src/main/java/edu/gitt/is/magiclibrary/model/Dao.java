@@ -1,4 +1,4 @@
-package gitt.is.magiclibrary.model;
+package edu.gitt.is.magiclibrary.model;
 
 import java.util.Optional;
 import java.util.List;

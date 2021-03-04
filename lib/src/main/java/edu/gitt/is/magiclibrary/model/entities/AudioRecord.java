@@ -1,4 +1,4 @@
-package gitt.is.magiclibrary.model;
+package edu.gitt.is.magiclibrary.model.entities;
 
 
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import java.sql.Date;
  * @author Isabel Román
  * @version 0.0
  * <p>Entidad para almacenar los datos de una grabación de audio.</p>
- * <p>Hereda de {@link gitt.is.magiclibrary.model.Title}, los datos particulares a la clase AudioRecord se guardan en una tabla, pero los comunes a Title se guardan en otra</p>
+ * <p>Hereda de {@link edu.gitt.is.magiclibrary.model.entities.Title}, los datos particulares a la clase AudioRecord se guardan en una tabla, pero los comunes a Title se guardan en otra</p>
  *
  */
 
@@ -37,10 +37,10 @@ public class AudioRecord extends Title
    private String tracks;
    /**
     * 
-    * @param id identificador unívoco de la grabación audio {@link gitt.is.magiclibrary.model.Title}
-    * @param name Nombre	{@link gitt.is.magiclibrary.model.Title}
-    * @param author Autor {@link gitt.is.magiclibrary.model.Title}
-    * @param publishedAt Fecha de publicación {@link gitt.is.magiclibrary.model.Title}
+    * @param id identificador unívoco de la grabación audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param label Etiqueta
     * @param duration Duración
     * @param tracks Número de Tracks
@@ -55,9 +55,9 @@ public class AudioRecord extends Title
    }
    /**
     * 
-    * @param name Nombre {@link gitt.is.magiclibrary.model.Title}
-    * @param author Autor {@link gitt.is.magiclibrary.model.Title}
-    * @param publishedAt Fecha de publicación {@link gitt.is.magiclibrary.model.Title}
+    * @param name Nombre {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param label Etiqueta
     * @param duration Duración
     * @param tracks Número de Tracks

@@ -14,7 +14,8 @@ import org.junit.jupiter.api.BeforeAll;
 
 import org.junit.jupiter.api.Test;
 
-import gitt.is.magiclibrary.model.*;
+import edu.gitt.is.magiclibrary.model.*;
+import edu.gitt.is.magiclibrary.model.entities.*;
 
 
 

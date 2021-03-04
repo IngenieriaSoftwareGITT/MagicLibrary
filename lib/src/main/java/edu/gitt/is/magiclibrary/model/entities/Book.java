@@ -1,8 +1,9 @@
-package gitt.is.magiclibrary.model;
+package edu.gitt.is.magiclibrary.model.entities;
 
 import javax.persistence.Entity;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 
 //import javax.persistence.DiscriminatorValue;
 
@@ -10,7 +11,7 @@ import java.sql.Date;
  * @author Isabel Román
  * @version 0.0
  * <p>Entidad para los datos de un libro (Book), un tipo concreto de título (Title) </p>
- * <p>Hereda de Title {@link gitt.is.magiclibrary.model.Title} pero se configura para que los datos se guarden en una tabla diferente en la base de datos</p>
+ * <p>Hereda de Title {@link edu.gitt.is.magiclibrary.model.entities.Title} pero se configura para que los datos se guarden en una tabla diferente en la base de datos</p>
  * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p> 
  * <p> La estructura de datos es conforme al proyecto ejemplo de MagiDraw (MagicLibrary) <img src="./doc-files/MLEntities.gif" alt="Modelo de MagicLibrary" height="50%" width="100%"/> </p>
  */
@@ -33,10 +34,10 @@ public class Book extends Title
    private int pages;
    /**
     * Asignación manual del id
-    * @param id identificador unívoco de la grabación audio {@link gitt.is.magiclibrary.model.Title}
-    * @param name Nombre	{@link gitt.is.magiclibrary.model.Title}
-    * @param author Autor {@link gitt.is.magiclibrary.model.Title}
-    * @param publishedAt Fecha de publicación {@link gitt.is.magiclibrary.model.Title}
+    * @param id identificador unívoco de la grabación audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param isbn El ISBN del libro
     * @param pages Número de páginas
     */
@@ -48,15 +49,15 @@ public class Book extends Title
    }
    /**
     * Asigna automática el id
-    * @param name Nombre	{@link gitt.is.magiclibrary.model.Title}
-    * @param author Autor {@link gitt.is.magiclibrary.model.Title}
-    * @param publishedAt Fecha de publicación {@link gitt.is.magiclibrary.model.Title}
+    * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param date Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param isbn El ISBN del libro
     * @param pages Número de páginas
     */
-   public Book( String name, String author, Date publishedAt, String isbn,int pages ) 
+   public Book( String name, String author, Date date, String isbn,int pages ) 
    {
-      super( name, author, publishedAt );
+      super( name, author, date );
       this.isbn = isbn;
       this.pages = pages;
    }

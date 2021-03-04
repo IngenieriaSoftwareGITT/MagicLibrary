@@ -36,3 +36,4 @@ build
 # Ignora configuración del proyecto eclipse
 .project
 .settings
+.classpath

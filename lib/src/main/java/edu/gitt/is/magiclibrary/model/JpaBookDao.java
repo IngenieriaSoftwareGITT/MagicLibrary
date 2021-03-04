@@ -1,4 +1,4 @@
-package gitt.is.magiclibrary.model;
+package edu.gitt.is.magiclibrary.model;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,12 +9,13 @@ import java.util.logging.*;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import edu.gitt.is.magiclibrary.model.entities.Book;
 
 import javax.persistence.PersistenceContext;
 /**
  * @author Isabel Román
  * @version 0.0
- * <p> Esta es la clase para manejar las entidades de tipo Book (libro) {@link gitt.is.magiclibrary.model.Book} y está codificada usando la API JPA {@link javax.persistence}</p>
+ * <p> Esta es la clase para manejar las entidades de tipo Book (libro) {@link edu.gitt.is.magiclibrary.model.entities.Book} y está codificada usando la API JPA {@link javax.persistence}</p>
  * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p> 
  */
 @PersistenceContext(unitName = "h2-eclipselink")
@@ -40,7 +41,7 @@ public class JpaBookDao implements Dao<Book> {
 	
 	/**
 	 *
-	 * {@link gitt.is.magiclibrary.model.Dao}
+	 * {@link edu.gitt.is.magiclibrary.model.Dao}
 	 */
 	 @Override
 	 public Optional<Book>  findById(String primaryKey) {
@@ -51,7 +52,7 @@ public class JpaBookDao implements Dao<Book> {
 	   }
 	 /**
 	 *
-	 * {@link gitt.is.magiclibrary.model.Dao}
+	 * {@link edu.gitt.is.magiclibrary.model.Dao}
 	 */
 	 @Override
 	 public List<Book> findAll(){
@@ -64,7 +65,7 @@ public class JpaBookDao implements Dao<Book> {
 	 }
 	 /**
 	 *
-	 * {@link gitt.is.magiclibrary.model.Dao}
+	 * {@link edu.gitt.is.magiclibrary.model.Dao}
 	 */ 	
 	@Override
 	public void save(Book book) {
@@ -73,7 +74,7 @@ public class JpaBookDao implements Dao<Book> {
 	}
 	/**
 	 *
-	 * {@link gitt.is.magiclibrary.model.Dao}
+	 * {@link edu.gitt.is.magiclibrary.model.Dao}
 	 */
 	@Override
 	public void update(Book book) {
@@ -81,7 +82,7 @@ public class JpaBookDao implements Dao<Book> {
 	}
 	/**
 	 *
-	 * {@link gitt.is.magiclibrary.model.Dao}
+	 * {@link edu.gitt.is.magiclibrary.model.Dao}
 	 */
 	@Override
 	public void delete(Book book) {
@@ -89,7 +90,7 @@ public class JpaBookDao implements Dao<Book> {
 	}
 	/**
 	 *
-	 * {@link gitt.is.magiclibrary.model.Dao}
+	 * {@link edu.gitt.is.magiclibrary.model.Dao}
 	 */
 	@Override
 	public void delete(String id) {
@@ -109,5 +110,19 @@ public class JpaBookDao implements Dao<Book> {
 	      
 		   return Optional.ofNullable((Book)book);
 		}
+	/**
+	 * Busca un libro por su isbn
+	 * @param isbn ISBN a buscar
+	 * @return Libro {@link java.util.Optional} Relleno con el libro si se encontraba, o vacío si no estaba
+	 */
+		public Optional<Book> findBookByIsbn(String isbn) {
+			   log.info("Consulto Book con ISBN= "+isbn);
+			   Query query = jpa.getEntityManager()
+			         .createQuery("Select a from Book a where a.isbn = :isbn");
+			   query.setParameter("isbn", isbn);		   
+		       Book book= (Book) query.getSingleResult();
+		      
+			   return Optional.ofNullable((Book)book);
+			}
 	
 	}
