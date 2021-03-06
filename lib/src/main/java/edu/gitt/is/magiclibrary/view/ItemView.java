@@ -2,12 +2,18 @@ package edu.gitt.is.magiclibrary.view;
 
 import javax.swing.JTextField;
 
+import edu.gitt.is.magiclibrary.model.entities.Book;
 import edu.gitt.is.magiclibrary.model.entities.Item;
+import edu.gitt.is.magiclibrary.model.entities.Title;
+
+import java.text.ParseException;
+import java.util.logging.Logger;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
 
 public class ItemView extends EntityView<Item> {
+	private static Logger log=Logger.getLogger(ItemView.class.getName());
 	/**
 	 * Número de serie por defecto
 	 */
@@ -26,7 +32,7 @@ public class ItemView extends EntityView<Item> {
 
 	public ItemView(Item item) {
 		createPanel();	
-		setItem(item);
+		setEntity(item);
 	}
 	/**
 	 * Create the panel.
@@ -67,13 +73,47 @@ public class ItemView extends EntityView<Item> {
 		titlePanel.disableAllAttributes();
 	}
 	
-	public void setItem(Item item) {
+	public void setEntity(Item item) {
 		this.entity=item;
 		inventoryNrField.setText(item.getInventoryNr());
 		statusField.setText(item.getStatus().toString());
-		titlePanel.setTitle(item.getItemInfo());
+		titlePanel.setEntity(item.getItemInfo());
 	}
+	/**
+	 * Devuelve el Ejemplar a partir de los datos de entrada. El título correspondiente queda sin especificar, no se sabe el tipo y no lo asocia con ningun existente
+	 * A esto le queda muchísimo por hacer, el ejemplar debería estar asociado a un título previamente existente, de modo que la creación implicaría la búsqueda y selección de un título
+	 * @return ejemplar a partir de los datos de entrada
+	 */
 	public Item getItem() {
-		return this.entity;
+		log.info("Creando Item a partir de los datos de entrada");
+		Item item=null;
+		Title title=null;
+		if (this.entity==null){
+			try {
+				title = new Title(titlePanel.getAttributeAsString("name"),titlePanel.getAttributeAsString("author"),MLView.getFrameManager().getDateFormat().parse(titlePanel.getAttributeAsString("publishedAt")));
+				item=new Item(title);
+				item.setInventoryNr(inventoryNrField.getText());
+				
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			} 
+			setEntity(item);
+		}else {
+			entity.getItemInfo().setAuthor(titlePanel.getAttributeAsString("author"));
+			entity.getItemInfo().setName(titlePanel.getAttributeAsString("name"));
+			entity.setInventoryNr(inventoryNrField.getText());
+			try {
+				entity.getItemInfo().setPublishedAt(MLView.getFrameManager().getDateFormat().parse(titlePanel.getAttributeAsString("publishedAt")));
+			} catch (ParseException e) {
+			
+				e.printStackTrace();
+			}
+		
+			item=(Item) entity;
+		}
+		
+		return item;
 	}
+		
 }

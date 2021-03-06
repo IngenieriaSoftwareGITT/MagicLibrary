@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import javax.swing.JMenuBar;
 
+
 import java.util.logging.Logger;
 
 
@@ -17,12 +18,13 @@ import java.util.logging.Logger;
  * <p>Cada vista se configura incluyendo y eliminando los componentes de este contenedor principal</p>
  *
  */
-public class MagicLibraryView {
-	private static Logger log=Logger.getLogger(MagicLibraryView.class.getName());
+public class MLView {
+	private static Logger log=Logger.getLogger(MLView.class.getName());
 	
 	private static JFrame frame;
 	private static FrameManagerI myFrameManager=null;
-	private static MagicLibraryView mainWindow=null;
+	private static MLView mainWindow=null;
+
 
 
 	
@@ -30,15 +32,15 @@ public class MagicLibraryView {
 	/**
 	 * Crea la Vista principal
 	 */
-	private MagicLibraryView() {
+	private MLView() {
 		
 	}
 
 	public static FrameManagerI getFrameManager() {
 		
 		if (myFrameManager==null){
-			log.info("Creo el MagicLibraryView");
-			mainWindow=new MagicLibraryView();
+			log.info("Creo la vista principal de Magic Library");
+			mainWindow=new MLView();
 			mainWindow.initialize();
 			frame.setVisible(true);
 			
@@ -47,12 +49,14 @@ public class MagicLibraryView {
 	}
 
 	/**
-	 * Inicia los contenidos de la vista principal de Magic Library, simplemente una barra de menú
+	 * <p> Inicia los contenidos de la vista principal de Magic Library, simplemente una barra de menú</p>
 	 */
 	private void initialize() {
 		log.info("Creo el JFrame principal, el frameManager y la barra de Menú");
 		frame = new JFrame();
+		
 		myFrameManager = new FrameManager(frame);
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 	

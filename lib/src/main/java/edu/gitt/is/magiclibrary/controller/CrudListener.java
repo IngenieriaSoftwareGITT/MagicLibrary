@@ -5,19 +5,27 @@
 package edu.gitt.is.magiclibrary.controller;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.logging.*;
+
+
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import edu.gitt.is.magiclibrary.model.Dao;
 
 import edu.gitt.is.magiclibrary.view.*;
 
-import java.awt.event.*;        //for action events
+
 
 /**
+ * <p>Clase genérica para los controladores que atienden a la vista de cualquier tipo de entidad</p>
  * @author Isabel Román
  *
  */
-public abstract class CrudListener<T> implements ActionListener{
+public abstract class CrudListener<T> implements ActionListener, ListSelectionListener{
 	private static Logger log=Logger.getLogger(CrudListener.class.getName());
 	protected EntityView view;
 	private CrudOperation operation;
@@ -25,7 +33,11 @@ public abstract class CrudListener<T> implements ActionListener{
 	
 	protected Dao entityDao;
    
-   
+/**
+ * <p>Método correspondiente a la interfaz ActionListener, responde a los eventos lanzados por la vista de entidad</p>
+ * {@link java.awt.event.ActionListener}
+ * @param e {@link java.awt.event.ActionEvent}   
+ */
 	public void actionPerformed(ActionEvent e) {
 		    log.info("Recibido evento "+e+" en el CrudListener\n");
 		    entityDao = newDao();
@@ -45,7 +57,7 @@ public abstract class CrudListener<T> implements ActionListener{
 		    	
 		    		save();
 		    		
-		    		MagicLibraryView.getFrameManager().discard(view);
+		    		MLView.getFrameManager().discard(view);
 		    		break;
 		    	case "Read":
 		    		log.info("Implementar la lectura");
@@ -75,18 +87,33 @@ public abstract class CrudListener<T> implements ActionListener{
 		    	case "Remove":		 
 		    		log.info("Eliminar definitivamente");		    	
 		    		entityDao.delete(view.getEntity());
-		    		MagicLibraryView.getFrameManager().discard(view);
+		    		MLView.getFrameManager().discard(view);
 		    		break;
 		    	case "Discard":
 		    		log.info("Implementar Discard");
-		    		MagicLibraryView.getFrameManager().discard(view);  		
+		    		MLView.getFrameManager().discard(view);  		
 		    		
 		    }
 	        
 	    }
-
+	/**
+	 * <p>Método correspondiente a la interfaz ListSelectionListener responde a los cambios en la selección en la lista de entidades múltiples de la vista correspondiente</p>
+	 * {@link javax.swing.event.ListSelectionListener}
+	 * @param e {@link javax.swing.event.ListSelectionEvent}
+	 */
 	
+	public void valueChanged(ListSelectionEvent e) {
+		log.info("Cambia la selección en la lista");
+		
+		view.setEntity(view.getSelectedValue());
+    }
+
+	/**
+	 * Crea la vista con una única entidad
+	 * @param entity
+	 */
 	protected void setView(T entity) {
+		log.info("Creando vista con una entidad");
 		/**Datos del título*/
 		view=newView(entity);
 		switch(operation) {
@@ -100,7 +127,31 @@ public abstract class CrudListener<T> implements ActionListener{
 		case DELETE:
 			view.addDeleteButtons(this);
 		}	
-		MagicLibraryView.getFrameManager().addCenter(view);
+		MLView.getFrameManager().addCenter(view);
+		
+	}
+	/**
+	 * Crea la vista con un conjunto de entidades
+	 * @param entities
+	 */
+	protected void setView(List<T> entities) {
+		log.info("Creando vista con múltiples entidades");
+		/**Datos del título*/
+		view=newView(entities.get(0));
+		view.setEntity(entities);
+		switch(operation) {
+		case READ:
+			view.disableAllAttributes();
+			view.addDiscardButton(this);
+			break;
+		case UPDATE:
+			view.addCreateButtons(this);
+			break;
+		case DELETE:
+			view.addDeleteButtons(this);
+		}	
+		view.addList(this);
+		MLView.getFrameManager().addCenter(view);
 		
 	}
 	/**
@@ -108,23 +159,23 @@ public abstract class CrudListener<T> implements ActionListener{
 	 */
 	private void setCreateView() {	
 		log.info("Estableciendo vista vacía para crear");
-		MagicLibraryView.getFrameManager().discard(view);
-		MagicLibraryView.getFrameManager().reset();
+		MLView.getFrameManager().discard(view);
+		MLView.getFrameManager().reset();
 		view=newView();
 		view.addCreateButtons(this);
 		view.setVisible(true);
-		MagicLibraryView.getFrameManager().addCenter(view);
+		MLView.getFrameManager().addCenter(view);
 	}
 	/**
 	 * Establece la vista vacía para buscar una entidad nueva, todos los campos habilitados para buscar
 	 */
 	protected void setSearchView() {	
 		log.info("Estableciendo vista vacía para buscar");
-		MagicLibraryView.getFrameManager().discard(view);
+		MLView.getFrameManager().discard(view);
 		view=newView();
 		view.addSearchButtons(this);		
 	
-		MagicLibraryView.getFrameManager().addCenter(view);
+		MLView.getFrameManager().addCenter(view);
 	
 	}
 	/**
@@ -132,19 +183,35 @@ public abstract class CrudListener<T> implements ActionListener{
 	 */
 	protected void setSearchView(String query) {	
 		log.info("Estableciendo vista vacía para buscar");
-		MagicLibraryView.getFrameManager().discard(view);
+		MLView.getFrameManager().discard(view);
 		view=newView();
 		view.addSearchButtons(this);		
 		view.disableAllAttributes();
 		view.enableAttribute(query);
-		MagicLibraryView.getFrameManager().addCenter(view);
+		MLView.getFrameManager().addCenter(view);
 	
 	}
+	
 	abstract void search();
-	abstract EntityView newView();
-	abstract EntityView newView(T entity);
-	abstract Dao newDao();
 	abstract void save();
+	/**
+	 * <p>Método factoría, serán los hijos los que decidan la clase concreta del objeto vista creado, en este caso vacía (sin relacionar con una instancia de entidad concreta)</p> 
+	 * @return una nueva vista para un tipo de entidad concreto
+	 */
+	abstract EntityView newView();
+	/**
+	 * <p>Método factoría, serán los hijos los que decidan la clase concreta del objeto vista creado, en este caso rellena (con los datos de la entidad pasada como parámetro</p> 
+	 * @return una nueva vista para un tipo de entidad concreto
+	 * @param entity entidad asociada a la vista
+	 */
+	abstract EntityView newView(T entity);
+	/**
+	 * <p>Método factoría, serán los hijos los que decidan la clase concreta del Dao asociado</p> 
+	 * @return un nuevo objeto dao para manejar un tipo de entidad concreto
+	 *
+	 */
+	abstract Dao newDao();
+	
 	
 }
 

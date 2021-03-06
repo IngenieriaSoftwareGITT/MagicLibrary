@@ -31,6 +31,7 @@ class JpaItemDaoTest {
 	private static final Logger log = Logger.getLogger(JpaItemDaoTest.class.getName());
 	static Item item1;
 	static Item item2;
+	static Item item3;
 	static Book book1;
 	static Book book2;
 	static JpaItemDao undertest;
@@ -58,15 +59,17 @@ class JpaItemDaoTest {
 		log.info("Ejemplares con los títulos añadidos");
 	
 		item1 = new Item(book1);
-		item1.setInventoryNr("item1");
-		
-				
+		item1.setInventoryNr("item1");				
 		log.info("Item 1 creado "+item1);
+		
 		item2 = new Item(book2);
 		item2.setInventoryNr("item2");
-		
-
 		log.info("Item 2 creado "+item2);
+		
+		item3=new Item(book2);
+		item3.setInventoryNr("item3");
+		log.info("Item 3 creado "+item3);
+		
 		undertest = new JpaItemDao();
 		log.info("JpaItemDao bajo test creada");
 	}
@@ -108,6 +111,12 @@ class JpaItemDaoTest {
 		log.info("Busco todos los ejemplares");
 		items = undertest.findAll();
 		assertTrue(items.size()==2,"He metido dos ejemplares pero hay "+items.size());
+		
+		undertest.save(item3);
+		log.info("Persisto el tercer ejemplar "+item3+'\n');
+		log.info("Busco todos los ejemplares");
+		items = undertest.findAll();
+		assertTrue(items.size()==3,"He metido tres ejemplares pero hay "+items.size());
 	}
 
 	/**

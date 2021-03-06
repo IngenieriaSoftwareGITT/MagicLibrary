@@ -5,7 +5,7 @@ package edu.gitt.is.magiclibrary.view;
 
 import java.awt.Component;
 import java.awt.event.ActionListener;
-
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
@@ -13,17 +13,20 @@ import javax.swing.JFormattedTextField;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.JList;
 
 
 
 
 /**
+ * <p>Clase genérica para las vistas de entidad</p>
  * @author Isabel Román
  *
  */
 public abstract class EntityView<T> extends JPanel {
 	/**
-	 * 
+	 * Número de serie por defecto
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +38,15 @@ public abstract class EntityView<T> extends JPanel {
 	private JButton saveButton;
 	private JButton deleteButton;
 	private JButton discardButton;
+	private JList<T> list;
+	/**
+	 * Entidad principal asociada a la vista
+	 */
     protected T entity=null;
+    /**
+     * Lista de entidades asociadas a la vista
+     */
+    protected List<T> entities=null;
 	
 
 
@@ -43,18 +54,22 @@ public abstract class EntityView<T> extends JPanel {
 	 * Creación de la vista sin establecer la entidad
 	 */
 	public EntityView() {
-		log.info("Creando Vista vacía");
+		
+		log.info("Creando Vista vacía");		
 		
 	}
 	/**
-	 * Creación de la vista estableciendo la entidad
+	 * <p>Creación de la vista estableciendo una única entidad</p>
 	 * @param entity La entidad correspondiente a esta vista
 	 */
 	public EntityView(T entity) {	
-		log.info("Creando vista con entidad");
+		log.info("Creando vista con 1 entidad");
 		this.entity=entity;
 	}
-
+	/**
+	 * <p>Añade los botones de creación y descarte, le asocia el listener correspondiente</p>
+	 * @param listener controlador que responderá a las acciones en el botón de crear y descartar
+	 */
 	public void addCreateButtons(ActionListener listener) {
 		log.info("Añadiendo los botones de Guardar y Descartar");
 		saveButton = new JButton("Save");
@@ -69,6 +84,10 @@ public abstract class EntityView<T> extends JPanel {
 		setVisible(true);
 		
 	}
+	/**
+	 * <p>Añade el botón de borrado y le asocia el listener correspondiente</p>
+	 * @param listener controlador que responderá a las acciones en el botón de borrar
+	 */
 	public void addDeleteButtons(ActionListener listener) {
 		log.info("Añadiendo los botones de eliminar y descartar");
 		deleteButton = new JButton("Remove");
@@ -84,6 +103,10 @@ public abstract class EntityView<T> extends JPanel {
 		setVisible(true);
 		
 	}
+	/**
+	 * <p>Añade el botón de descartar y le asocia el listener correspondiente</p>
+	 * @param listener controlador que responderá a las acciones en el botón de descartar
+	 */
 	public void addDiscardButton(ActionListener listener) {
 		log.info("Añadiendo el botón de descartar");
 			
@@ -95,6 +118,10 @@ public abstract class EntityView<T> extends JPanel {
 		setVisible(true);
 		
 	}
+	/**
+	 * <p>Añade los botones de buscar y descartar, le asocia el listener correspondiente</p>
+	 * @param listener controlador que responderá a las acciones en el botón de buscar y descartar
+	 */
 	public void addSearchButtons(ActionListener listener) {
 		
 		searchButton = new JButton("Search");
@@ -105,18 +132,45 @@ public abstract class EntityView<T> extends JPanel {
 		setVisible(true);
 		
 	}
+	/**
+	 * <p>Añade la lista para entidades múltiples, le asocia el listener correspondiente</p>
+	 * @param listener controlador que responderá a las selecciones en la lista
+	 */
+	public void addList(ListSelectionListener listener) {
+		list = new JList(entities.toArray());
+		list.setName("entities");
+		list.setBounds(56, 350, 400, 50);
+		list.setSelectedIndex(0);
+		list.addListSelectionListener(listener);
+		add(list);
+		setVisible(true);
+	}
+	/**
+	 * Devuelve el valor seleccionado en la lista de entidades múltiples
+	 * @return El valor seleccionado en la lista
+	 */
+	public T getSelectedValue() {
+		return list.getSelectedValue();
+	}
 
 	/**
-	 * Método par establecer la entidad tras la construcción
+	 * <p>Método para establecer la entidad principal</p>
 	 * @param entity entidad correspondiente a esta vista
 	 */
 	public void setEntity(T entity) {
 		this.entity=entity;
-		
-	}
+		}
+	/**
+	 * <p>Método par establecer la entidad principal</p>
+	 * @param entities lista de entidades correspondientes a esta vista
+	 */
+	public void setEntity(List<T> entities) {
+		this.entities=entities;
+		}
+	
 	/**
 	 * 
-	 * @return Devuelve un Book con los datos correspondientes a las casillas de texto
+	 * @return Devuelve la entidad correspondiente
 	 */
 	
 	public T getEntity() {
@@ -185,13 +239,14 @@ public abstract class EntityView<T> extends JPanel {
 		log.info("Buscando valor del campo "+name);
 		Component[] components = this.getComponents();
 		for (Component c : components){
-			log.info("Encontrado componente con nombre "+c.getName());
+		
 			if(c.getName()==name) {
 				value=((JTextField) c).getText();
 			}
 		}
 		return value;
 	}
+
 	
 
 }

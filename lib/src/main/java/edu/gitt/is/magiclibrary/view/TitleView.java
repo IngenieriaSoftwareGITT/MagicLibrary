@@ -11,9 +11,11 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 
 import java.text.SimpleDateFormat;
+import java.util.logging.Logger;
 import java.text.DateFormat;
 
 public class TitleView extends EntityView<Title> {
+	private static Logger log=Logger.getLogger(TitleView.class.getName());
 	/**
 	 * Número de serie por defecto
 	 * 
@@ -27,19 +29,26 @@ public class TitleView extends EntityView<Title> {
 	private JLabel publishedAtLabel;
 	private JLabel authorLabel;
 	private JLabel nameLabel;
-	protected DateFormat format;
+
 
 	/**
-	 * Crea el panel
+	 * Constructor simple, invoca el método para crear el panel principal de la vista de títulos
 	 */
 	public TitleView() {
 		createPanel();
 
 	}
+	/**
+	 * <p>Constructor que invoca el método para crear el panel principal de la vista de títulos y la asocia a un título determinado</p>
+	 * @param title
+	 */
 	public TitleView(Title title) {
 		createPanel();		
-		setTitle(title);
+		setEntity(title);
 	}
+	/**
+	 * <p>Crea el panel principal con los campos genéricos de todos los títulos de la biblioteca</p>
+	 */
 	private void createPanel(){
 		setLayout(null);
 		
@@ -53,8 +62,7 @@ public class TitleView extends EntityView<Title> {
 		add(nameLabel);
 		
 
-		format = new SimpleDateFormat("dd-MM-yyyy");
-		publishedAtField = new JFormattedTextField(format);
+		publishedAtField = new JFormattedTextField(MLView.getFrameManager().getDateFormat());
 		publishedAtField.setName("publishedAt");
 		publishedAtField.setBounds(139, 66, 300, 20);
 		add(publishedAtField);
@@ -73,7 +81,12 @@ public class TitleView extends EntityView<Title> {
 		add(authorLabel);	
 		
 	}
-	public void setTitle(Title title) {
+	/**
+	 * Asocia la vista a un título específico y muestra sus valores
+	 * @param title el título que quiero asociar a la vista
+	 */
+	public void setEntity(Title title) {
+		log.info("Mostrando atributos del título");
 		this.entity=title;
 		nameField.setText(title.getName());
 		publishedAtField.setText(title.getPublishedAt().toString());

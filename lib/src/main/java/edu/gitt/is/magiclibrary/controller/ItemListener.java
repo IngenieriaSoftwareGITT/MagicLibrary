@@ -3,17 +3,22 @@
  */
 package edu.gitt.is.magiclibrary.controller;
 
-import edu.gitt.is.magiclibrary.model.JpaBookDao;
+
 import edu.gitt.is.magiclibrary.model.JpaItemDao;
-import edu.gitt.is.magiclibrary.model.entities.Book;
+
 import edu.gitt.is.magiclibrary.model.entities.Item;
 import edu.gitt.is.magiclibrary.view.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.*;
 
+import javax.swing.event.ListSelectionEvent;
+
 
 /**
+ * <p>Controlador de la vista de Ejemplares. Está sin terminar y tiene problemas graves, como por ejemplo al crear uno no se especifica tipo de título y no permite
+ * asociarlo con uno ya existente</p>
  * @author Isabel Román
  *
  */
@@ -24,18 +29,34 @@ public class ItemListener extends CrudListener<Item>{
 
 	@Override
 	void search() {
-		Optional<Item> recuperado = ((JpaItemDao) entityDao).findById(view.getAttributeAsString("inventoryNr"));	
-		if(recuperado.isPresent()) {
-			MagicLibraryView.getFrameManager().discard(view);
-			setView(recuperado.get());
-			
-		}else {
-			log.info("Ejemplar no encontrado");
-			MagicLibraryView.getFrameManager().discard(view);
-		}
+		String inventoryNr=view.getAttributeAsString("inventoryNr");
 		
+		if((!inventoryNr.isEmpty()) && (inventoryNr!="*")) {
+			log.info("Buscando un ejemplar con Id ="+inventoryNr);
+			Optional<Item> recuperado = ((JpaItemDao) entityDao).findById(inventoryNr);
+						
+			if(recuperado.isPresent()) {
+				MLView.getFrameManager().discard(view);
+				setView(recuperado.get());
+			
+			}else {
+				log.info("Ejemplar no encontrado");
+				MLView.getFrameManager().discard(view);
+			}
+		}else {
+			log.info("Buscando todos los ejemplares");
+			List<Item> recuperados=((JpaItemDao) entityDao).findAll();
+			MLView.getFrameManager().discard(view);
+			setView(recuperados);
+		}		
 	}
-
+	/**
+	 * Responde a los cambios en la lista de múltiples ejemplares
+	 */
+	public void valueChanged(ListSelectionEvent e) {
+		log.info("Cambia la selección en la lista");		
+		((ItemView) view).setEntity((Item)view.getSelectedValue());
+    } 
 	@Override
 	ItemView newView() {
 		return new ItemView();
@@ -64,8 +85,7 @@ public class ItemListener extends CrudListener<Item>{
 	 */
 	protected void setSearchView() {	
 		log.info("Estableciendo vista de libro vacía para buscar por número de inventario");
-		setSearchView("inventoryNr");
-	
+		setSearchView("inventoryNr");	
 	}
 
 	

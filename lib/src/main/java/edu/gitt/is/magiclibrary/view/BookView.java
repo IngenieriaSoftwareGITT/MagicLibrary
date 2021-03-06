@@ -1,18 +1,17 @@
 package edu.gitt.is.magiclibrary.view;
 
-import javax.swing.JPanel;
+
 import javax.swing.JTextField;
 
-import edu.gitt.is.magiclibrary.controller.BookListener;
+
 import edu.gitt.is.magiclibrary.model.entities.Book;
 
-import java.awt.BorderLayout;
-import java.sql.Date;
+
 import java.text.ParseException;
 import java.util.logging.Logger;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 
 public class BookView extends TitleView {
 	private static Logger log=Logger.getLogger(BookView.class.getName());
@@ -22,27 +21,28 @@ public class BookView extends TitleView {
 	private JLabel isbnLabel;
 	private JLabel pagesLabel;
 
+
 	
 
 
 	/**
-	 * Creación de la vista vacía. Se usará para introducir búsquedas o los datos de un libro nuevo
+	 * <p>Creación de la vista vacía. Se usará para introducir búsquedas o los datos de un libro nuevo</p>
 	 */
 	public BookView() {
 		super();
 		createPanel();
 	}
 	/**
-	 * Creación de la vista con los datos de un libro. Se usará para presentar los datos de un libro ya existente para su edición o eliminación
+	 * <p>Creación de la vista con los datos de un libro. Se usará para presentar los datos de un libro ya existente para su edición o eliminación</p>
 	 * @param book El libro a presentar en la vista
 	 */
 	public BookView(Book book) {
 		
 		createPanel();
-		this.setBook(book);
+		this.setEntity(book);
 	}
 	/**
-	 * Crea el panel
+	 * <p>Crea el panel añadiendo los campos específicos de un título de tipo libro, los campos genéricos de título están heredados de la vista de entidades de tipo título</p>
 	 */
 	private void createPanel() {
 		log.info("Creando el panel de libro");
@@ -68,16 +68,16 @@ public class BookView extends TitleView {
 		pagesLabel.setBounds(33, 206, 46, 14);
 		add(pagesLabel);
 		
-
-	}
+		}
 
 
 	/**
-	 * Método par establecer el libro en la vista, se mostrarán sus datos por pantalla
+	 * <p>Método par establecer el libro en la vista, se mostrarán sus datos por pantalla</p>
 	 * @param book Libro que queremos mostrar por pantalla
 	 */
-	public void setBook(Book book) {
-		this.setTitle(book);
+	public void setEntity(Book book) {
+		log.info("Mostrando atributos del libro");
+		super.setEntity(book);
 		isbnField.setText(book.getIsbn());		
 		pagesField.setText(Integer.toString(book.getPages()));
 	}
@@ -87,10 +87,11 @@ public class BookView extends TitleView {
 	 */
 	
 	public Book getBook() {
+		log.info("Creando libro a partir de los datos de entrada");
 		Book book=null;
 		if (this.entity==null){
 			try {
-				book = new Book(nameField.getText(),authorField.getText(),format.parse(publishedAtField.getText()),isbnField.getText(),Integer.parseUnsignedInt(pagesField.getText()));
+				book = new Book(nameField.getText(),authorField.getText(),MLView.getFrameManager().getDateFormat().parse(publishedAtField.getText()),isbnField.getText(),Integer.parseUnsignedInt(pagesField.getText()));
 			} catch (Exception e) {
 			
 				e.printStackTrace();
@@ -103,7 +104,7 @@ public class BookView extends TitleView {
 			entity.setName(nameField.getText());
 			
 			try {
-				entity.setPublishedAt(format.parse(publishedAtField.getText()));
+				entity.setPublishedAt(MLView.getFrameManager().getDateFormat().parse(publishedAtField.getText()));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

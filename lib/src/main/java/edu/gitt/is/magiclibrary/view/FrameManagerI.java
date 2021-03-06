@@ -5,6 +5,7 @@ package edu.gitt.is.magiclibrary.view;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.text.DateFormat;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -65,5 +66,10 @@ public interface FrameManagerI {
 	   * @return
 	   */
 	  public Component getComponentByName(String componentName);
+	  /**
+	   * Devuelve el formato usado para la fecha
+	   * @return Formato de fecha
+	   */
+	  public DateFormat getDateFormat();
 	
 }

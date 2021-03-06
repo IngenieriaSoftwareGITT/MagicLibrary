@@ -5,6 +5,8 @@ package edu.gitt.is.magiclibrary.view;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 import javax.swing.JFormattedTextField;
@@ -26,13 +28,15 @@ public class FrameManager implements FrameManagerI {
 	 * JFrame gestionado por este gestor
 	 */
 	private JFrame myFrame;
+	private DateFormat dateFormat;
+
 	      
 			
 			
 	public FrameManager(JFrame frame) {
 		this.myFrame=frame;
 		myFrame.setBounds(320, 320, 600,600);
-	
+		dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
@@ -129,6 +133,10 @@ public class FrameManager implements FrameManagerI {
 			}
 		}
 		return component;
+	}
+	@Override
+	public DateFormat getDateFormat() {
+		return this.dateFormat;
 	}
 	
 	
