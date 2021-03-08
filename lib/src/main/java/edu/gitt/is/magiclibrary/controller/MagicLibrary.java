@@ -13,14 +13,15 @@ import edu.gitt.is.magiclibrary.view.MLView;
  */
 public class MagicLibrary {
 	private static Logger log=Logger.getLogger(MagicLibrary.class.getName());
+	private static BookListener bookListener;
+	private static ItemListener itemListener;
 
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		final BookListener bookListener;
-		final ItemListener itemListener;
+		
 
 		log.info("Arranco la aplicación y creo el controlador para manejar entidades desde la interfaz");
 
@@ -29,7 +30,6 @@ public class MagicLibrary {
 		MLView.getFrameManager().setEntityMenu("Book", bookListener);
 		itemListener=new ItemListener();
 		MLView.getFrameManager().setEntityMenu("Item", itemListener);
-	
 	}
 
 }

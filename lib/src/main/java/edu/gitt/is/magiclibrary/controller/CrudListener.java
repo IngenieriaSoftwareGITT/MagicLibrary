@@ -27,7 +27,7 @@ import edu.gitt.is.magiclibrary.view.*;
  */
 public abstract class CrudListener<T> implements ActionListener, ListSelectionListener{
 	private static Logger log=Logger.getLogger(CrudListener.class.getName());
-	protected EntityView view;
+	protected EntityDetails view;
 	private CrudOperation operation;
 	protected T entity;
 	
@@ -109,7 +109,8 @@ public abstract class CrudListener<T> implements ActionListener, ListSelectionLi
     }
 
 	/**
-	 * Crea la vista con una única entidad
+	 * <p>Crea la vista con una única entidad</p>
+	 * <p>La dependencia del estado hace ver que debería utilizarse el patrón "Estado como objeto"</p>
 	 * @param entity
 	 */
 	protected void setView(T entity) {
@@ -131,7 +132,8 @@ public abstract class CrudListener<T> implements ActionListener, ListSelectionLi
 		
 	}
 	/**
-	 * Crea la vista con un conjunto de entidades
+	 * <p>Crea la vista con un conjunto de entidades/p>
+	 * <p>La dependencia del estado hace ver que debería utilizarse el patrón "Estado como objeto"</p>
 	 * @param entities
 	 */
 	protected void setView(List<T> entities) {
@@ -192,25 +194,25 @@ public abstract class CrudListener<T> implements ActionListener, ListSelectionLi
 	
 	}
 	
-	abstract void search();
-	abstract void save();
+	protected abstract void search();
+	protected abstract void save();
 	/**
 	 * <p>Método factoría, serán los hijos los que decidan la clase concreta del objeto vista creado, en este caso vacía (sin relacionar con una instancia de entidad concreta)</p> 
 	 * @return una nueva vista para un tipo de entidad concreto
 	 */
-	abstract EntityView newView();
+	protected abstract EntityDetails newView();
 	/**
 	 * <p>Método factoría, serán los hijos los que decidan la clase concreta del objeto vista creado, en este caso rellena (con los datos de la entidad pasada como parámetro</p> 
 	 * @return una nueva vista para un tipo de entidad concreto
 	 * @param entity entidad asociada a la vista
 	 */
-	abstract EntityView newView(T entity);
+	protected abstract EntityDetails newView(T entity);
 	/**
 	 * <p>Método factoría, serán los hijos los que decidan la clase concreta del Dao asociado</p> 
 	 * @return un nuevo objeto dao para manejar un tipo de entidad concreto
 	 *
 	 */
-	abstract Dao newDao();
+	protected abstract Dao newDao();
 	
 	
 }

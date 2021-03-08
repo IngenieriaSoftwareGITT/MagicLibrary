@@ -1,5 +1,6 @@
 /**
- * Clase abstracta que contiene todo lo común a las vistas de entidades
+ * <p>Clase abstracta que contiene todo lo común a las vistas de entidades</p>
+ * <p>Sería conveniente separar la creación de la vista de la propia vista, usando el patrón constructor posiblemente</p>
  */
 package edu.gitt.is.magiclibrary.view;
 
@@ -24,14 +25,14 @@ import javax.swing.JList;
  * @author Isabel Román
  *
  */
-public abstract class EntityView<T> extends JPanel {
+public abstract class EntityDetails<T> extends JPanel {
 	/**
 	 * Número de serie por defecto
 	 */
 	private static final long serialVersionUID = 1L;
 
 
-	private static Logger log=Logger.getLogger(EntityView.class.getName());
+	private static Logger log=Logger.getLogger(EntityDetails.class.getName());
 	
 
 	private JButton searchButton;
@@ -53,7 +54,7 @@ public abstract class EntityView<T> extends JPanel {
 	/**
 	 * Creación de la vista sin establecer la entidad
 	 */
-	public EntityView() {
+	public EntityDetails() {
 		
 		log.info("Creando Vista vacía");		
 		
@@ -62,7 +63,7 @@ public abstract class EntityView<T> extends JPanel {
 	 * <p>Creación de la vista estableciendo una única entidad</p>
 	 * @param entity La entidad correspondiente a esta vista
 	 */
-	public EntityView(T entity) {	
+	public EntityDetails(T entity) {	
 		log.info("Creando vista con 1 entidad");
 		this.entity=entity;
 	}
@@ -138,8 +139,9 @@ public abstract class EntityView<T> extends JPanel {
 	 */
 	public void addList(ListSelectionListener listener) {
 		list = new JList(entities.toArray());
+		
 		list.setName("entities");
-		list.setBounds(56, 350, 400, 50);
+		list.setBounds(56, 350, 400, 150);
 		list.setSelectedIndex(0);
 		list.addListSelectionListener(listener);
 		add(list);

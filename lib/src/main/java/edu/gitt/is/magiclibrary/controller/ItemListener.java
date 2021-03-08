@@ -28,7 +28,7 @@ public class ItemListener extends CrudListener<Item>{
 
 
 	@Override
-	void search() {
+	protected void search() {
 		String inventoryNr=view.getAttributeAsString("inventoryNr");
 		
 		if((!inventoryNr.isEmpty()) && (inventoryNr!="*")) {
@@ -55,27 +55,27 @@ public class ItemListener extends CrudListener<Item>{
 	 */
 	public void valueChanged(ListSelectionEvent e) {
 		log.info("Cambia la selección en la lista");		
-		((ItemView) view).setEntity((Item)view.getSelectedValue());
+		((ItemDetails) view).setEntity((Item)view.getSelectedValue());
     } 
 	@Override
-	ItemView newView() {
-		return new ItemView();
+	protected ItemDetails newView() {
+		return new ItemDetails();
 	}
 
 	@Override
-	ItemView newView(Item entity) {
-		return new ItemView(entity);
+	protected ItemDetails newView(Item entity) {
+		return new ItemDetails(entity);
 	}
 
 	@Override
-	JpaItemDao newDao() {
+	protected JpaItemDao newDao() {
 		
 		return new JpaItemDao();
 	}
 
 	@Override
-	void save() {
-		entity=((ItemView) view).getItem();
+	protected void save() {
+		entity=((ItemDetails) view).getItem();
 		log.info("Voy a guardar la entidad "+entity);
 		((JpaItemDao) entityDao).save((Item) entity);
 		

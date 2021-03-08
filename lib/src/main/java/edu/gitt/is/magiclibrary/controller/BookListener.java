@@ -12,7 +12,7 @@ import javax.swing.event.ListSelectionEvent;
 
 import edu.gitt.is.magiclibrary.model.JpaBookDao;
 import edu.gitt.is.magiclibrary.model.entities.Book;
-import edu.gitt.is.magiclibrary.view.BookView;
+import edu.gitt.is.magiclibrary.view.BookDetails;
 import edu.gitt.is.magiclibrary.view.MLView;
 
 /**
@@ -25,7 +25,7 @@ public class BookListener extends CrudListener<Book> {
 	
 
 	@Override
-	void search() {
+	protected void search() {
 		String isbn=view.getAttributeAsString("isbn");
 		
 		if((!isbn.isEmpty()) && (isbn!="*")) {
@@ -55,29 +55,29 @@ public class BookListener extends CrudListener<Book> {
 	public void valueChanged(ListSelectionEvent e) {
 		log.info("Cambia la selección en la lista");
 		
-		((BookView) view).setEntity((Book)view.getSelectedValue());
+		((BookDetails) view).setEntity((Book)view.getSelectedValue());
     } 
 	
 	@Override
-	BookView newView() {
+	protected BookDetails newView() {
 		log.info("Creo una vista de libro nueva");
-		return new BookView();
+		return new BookDetails();
 	}
 
 	@Override
-	BookView newView(Book entity) {
-		return new BookView(entity);
+	protected BookDetails newView(Book entity) {
+		return new BookDetails(entity);
 	}
 
 	@Override
-	JpaBookDao newDao() {
+	protected JpaBookDao newDao() {
 		log.info("Creo un DAO de libro nuevo");
 		return new JpaBookDao();
 	}
 
 	@Override
-	void save() {
-		entity=((BookView) view).getBook();
+	protected void save() {
+		entity=((BookDetails) view).getBook();
 		log.info("Voy a guardar la entidad "+entity);
 		((JpaBookDao) entityDao).save((Book) entity);
 		

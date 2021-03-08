@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
-public class BookView extends TitleView {
-	private static Logger log=Logger.getLogger(BookView.class.getName());
+public class BookDetails extends TitleDetails {
+	private static Logger log=Logger.getLogger(BookDetails.class.getName());
 	
 	private JTextField isbnField;
 	private JTextField pagesField;
@@ -28,7 +28,7 @@ public class BookView extends TitleView {
 	/**
 	 * <p>Creación de la vista vacía. Se usará para introducir búsquedas o los datos de un libro nuevo</p>
 	 */
-	public BookView() {
+	public BookDetails() {
 		super();
 		createPanel();
 	}
@@ -36,7 +36,7 @@ public class BookView extends TitleView {
 	 * <p>Creación de la vista con los datos de un libro. Se usará para presentar los datos de un libro ya existente para su edición o eliminación</p>
 	 * @param book El libro a presentar en la vista
 	 */
-	public BookView(Book book) {
+	public BookDetails(Book book) {
 		
 		createPanel();
 		this.setEntity(book);
@@ -116,5 +116,4 @@ public class BookView extends TitleView {
 		
 		return book;
 	}
-
 }

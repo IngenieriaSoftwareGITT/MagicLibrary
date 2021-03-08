@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
-public class ItemView extends EntityView<Item> {
-	private static Logger log=Logger.getLogger(ItemView.class.getName());
+public class ItemDetails extends EntityDetails<Item> {
+	private static Logger log=Logger.getLogger(ItemDetails.class.getName());
 	/**
 	 * Número de serie por defecto
 	 */
@@ -23,14 +23,14 @@ public class ItemView extends EntityView<Item> {
 	private JLabel inventoryNrLabel;
 	private JLabel statusLabel;
 
-	private TitleView titlePanel;
+	private TitleDetails titlePanel;
 	
-	public ItemView() {
+	public ItemDetails() {
 		createPanel();		
 		
 	}
 
-	public ItemView(Item item) {
+	public ItemDetails(Item item) {
 		createPanel();	
 		setEntity(item);
 	}
@@ -60,7 +60,7 @@ public class ItemView extends EntityView<Item> {
 		statusLabel.setBounds(37, 60, 46, 14);
 		add(statusLabel);
 		
-		titlePanel = new TitleView();
+		titlePanel = new TitleDetails();
 		titlePanel.setName("title");
 		titlePanel.setBounds(10,85,552,158);
 		add(titlePanel);
