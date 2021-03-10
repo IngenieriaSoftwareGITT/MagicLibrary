@@ -29,6 +29,25 @@ repositories {
     // Use JCenter for resolving dependencies.
     jcenter()
 }
+tasks.withType(JavaCompile) {
+	description = "Compilación del código"
+    //Añadir la opción Xlint
+    options.deprecation = true
+    options.encoding = 'ISO-8859-1'
+}
+tasks.withType(Javadoc){
+    description = "Genera la documentacion"
+    //indicar que la codificación es ISO
+    options.docEncoding = 'ISO-8859-1'
+    options.charSet = 'ISO-8859-1'
+    options.docFilesSubDirs = true
+    options.author = true
+    options.version = true
+    options.use = true
+    options.memberLevel = JavadocMemberLevel.PROTECTED
+    options.footer = "GITT-Ingenieria Software MagicLibrary"
+    title = "Magic Libraryr"
+}
 
 dependencies {
 

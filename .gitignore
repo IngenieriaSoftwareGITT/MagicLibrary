@@ -32,3 +32,9 @@ hs_err_pid*
 
 # Ignore Gradle build output directory
 build
+
+# Ignora configuración del proyecto eclipse
+.project
+.settings
+.bin
+.lock
