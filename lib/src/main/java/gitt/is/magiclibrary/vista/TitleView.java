@@ -19,7 +19,7 @@ import java.awt.event.*;        //for action events
 public class TitleView extends JPanel{
 	protected static final String name = "Nombre";
 	protected static final String author = "Autor";
-	protected static final String publishedAt = "Fecha de publicación";
+	protected static final String publishedAt = "Fecha de publicaciï¿½n";
 	protected static final String save = "Guardar";
 	
 	protected JLabel actionLabel;
@@ -34,7 +34,7 @@ public class TitleView extends JPanel{
     TitleView(ActionListener listener){
     	 setLayout(new BorderLayout());
 
-         //creamos una entrada de texto regular para el Nombre del título
+         //creamos una entrada de texto regular para el Nombre del tï¿½tulo
          nameField = new JTextField(20);
          nameField.setActionCommand(name);
       //   nameField.addActionListener(listener);
@@ -42,7 +42,7 @@ public class TitleView extends JPanel{
          JLabel nameLabel = new JLabel(name + ": ");
          nameLabel.setLabelFor(nameField);
          
-         //creamos una entrada de texto regular para el Autor del título
+         //creamos una entrada de texto regular para el Autor del tï¿½tulo
          authorField = new JTextField(20);
          authorField.setActionCommand(author);
     //     authorField.addActionListener(listener);
@@ -50,7 +50,7 @@ public class TitleView extends JPanel{
          JLabel authorLabel = new JLabel(author + ": ");
          authorLabel.setLabelFor(nameField);
          
-         //creamos una entrada de texto regular para el Autor del título
+         //creamos una entrada de texto regular para el Autor del tï¿½tulo
          publishedAtField = new JTextField(20);
          authorField.setActionCommand(publishedAt);
   //       authorField.addActionListener(listener);
@@ -58,14 +58,14 @@ public class TitleView extends JPanel{
          JLabel publishedAtLabel = new JLabel(publishedAt + ": ");
          authorLabel.setLabelFor(publishedAtField);
          
-        //Creamos una etiqueta para poder mostrar mensajes dinámicos mientras el panel está activo
-         actionLabel = new JLabel("Datos del título");
+        //Creamos una etiqueta para poder mostrar mensajes dinï¿½micos mientras el panel estï¿½ activo
+         actionLabel = new JLabel("Datos del tï¿½tulo");
          actionLabel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
          
-        //Creamos el botón para grabar los datos
+        //Creamos el botï¿½n para grabar los datos
          JButton saveButton = new JButton(save);
          saveButton.addActionListener(listener);
-        //etiquetamos el botón
+        //etiquetamos el botï¿½n
          JLabel saveLabel = new JLabel(save + ": ");
          saveLabel.setLabelFor(saveButton);
          
@@ -90,7 +90,7 @@ public class TitleView extends JPanel{
          this.add(saveButton,c);
          this.setBorder(
                  BorderFactory.createCompoundBorder(
-                                 BorderFactory.createTitledBorder("Datos del título"),
+                                 BorderFactory.createTitledBorder("Datos del tï¿½tulo"),
                                  BorderFactory.createEmptyBorder(5,5,5,5)));
     }
     public void printMessage(String msg) {
@@ -147,7 +147,7 @@ public class TitleView extends JPanel{
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                  //Turn off metal's use of bold fonts
-		UIManager.put("swing.boldMetal", Boolean.FALSE);
+		//UIManager.put("swing.boldMetal", Boolean.FALSE);
 		createAndShowGUI();
             }
         });
