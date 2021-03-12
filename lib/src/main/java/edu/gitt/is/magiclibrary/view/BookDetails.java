@@ -11,15 +11,25 @@ import java.text.ParseException;
 import java.util.logging.Logger;
 
 import javax.swing.JLabel;
-import javax.swing.JList;
+
+import org.jdesktop.beansbinding.AutoBinding;
+import org.jdesktop.beansbinding.BeanProperty;
+import org.jdesktop.beansbinding.BindingGroup;
+import org.jdesktop.beansbinding.Bindings;
+import org.jdesktop.beansbinding.Property;
+import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 
 public class BookDetails extends TitleDetails {
 	private static Logger log=Logger.getLogger(BookDetails.class.getName());
+	
+
 	
 	private JTextField isbnField;
 	private JTextField pagesField;
 	private JLabel isbnLabel;
 	private JLabel pagesLabel;
+	
+
 
 
 	
@@ -53,6 +63,7 @@ public class BookDetails extends TitleDetails {
 		isbnField.setBounds(140, 166, 300, 20);
 		add(isbnField);
 		isbnField.setColumns(10);
+	
 		
 		isbnLabel = new JLabel("ISBN");
 		isbnLabel.setBounds(33, 169, 46, 14);
@@ -67,6 +78,7 @@ public class BookDetails extends TitleDetails {
 		pagesLabel = new JLabel("Pages");
 		pagesLabel.setBounds(33, 206, 46, 14);
 		add(pagesLabel);
+	
 		
 		}
 
@@ -116,4 +128,5 @@ public class BookDetails extends TitleDetails {
 		
 		return book;
 	}
+	
 }

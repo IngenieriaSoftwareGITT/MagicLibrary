@@ -53,6 +53,8 @@ dependencies {
 
 	//Nuestra biblioteca usa la API JPA para persistencia
 	implementation group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1'
+	//Para poder ligar automáticamente un bean con una vista y facilitar la creación de la interfaz gráfica
+	implementation group: 'org.jdesktop', name: 'beansbinding', version: '1.2.1'
 	
 	//El proveedor de JPA que vamos a usar es eclipselink
 	implementation group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.7.8'

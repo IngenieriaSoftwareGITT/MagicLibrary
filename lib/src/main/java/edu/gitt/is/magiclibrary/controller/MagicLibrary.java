@@ -12,10 +12,16 @@ import edu.gitt.is.magiclibrary.view.MLView;
  *
  */
 public class MagicLibrary {
-	private static Logger log=Logger.getLogger(MagicLibrary.class.getName());
+	
 	private static BookListener bookListener;
 	private static ItemListener itemListener;
-
+	static {
+	      String path = MagicLibrary.class.getClassLoader()
+	                                  .getResource("log.properties")
+	                                  .getFile();
+	      System.setProperty("java.util.logging.config.file", path);
+	}
+	private static Logger log=Logger.getLogger(MagicLibrary.class.getName());
 	
 	/**
 	 * @param args
@@ -30,6 +36,7 @@ public class MagicLibrary {
 		MLView.getFrameManager().setEntityMenu("Book", bookListener);
 		itemListener=new ItemListener();
 		MLView.getFrameManager().setEntityMenu("Item", itemListener);
+		log.fine("Terminando el método main");
 	}
 
 }
