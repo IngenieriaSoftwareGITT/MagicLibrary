@@ -17,10 +17,14 @@ import java.util.List;
 import java.util.ArrayList;
 /**
  * 
- * @author Isabel Román
  * <p>Entidad para almacenar los datos de un título de la biblioteca, información común a títulos de distinta naturaleza</p>
  * <p>Se elige que en la base de datos se use una tabla para cada tipo concreto de título y una para la información común</p>
- *
+ * {@link javax.persistence.Entity}
+ * {@link javax.persistence.Table}
+ * {@link javax.persistence.Inheritance}
+ * {@link javax.persistence.InheritanceType}
+ * @author Isabel Román
+ * @version 0.0
  */
 @Entity
 @Table
@@ -163,7 +167,7 @@ public class Title implements Serializable{
 		this.publishedAt = date;
 	}
 	/**
-	 * 
+	 * @return Devuelve la fecha de publicación
 	 * @param date Fecha de publicación 
 	 */
 	public Date getPublishedAt(Date date) {

@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import edu.gitt.is.magiclibrary.controller.CrudListener;
 
 /**
+ * <p>Clase que se respnsabiizará de gestionar una vista, encarnada en un {@link javax.swing.JFrame}</p>
  * @author Isabel Román
  *
  */
@@ -32,7 +33,10 @@ public class FrameManager implements FrameManagerI {
 
 	      
 			
-			
+	/**
+	 * <p>Constructor</p>		
+	 * @param frame Recibe el marco {@link javax.swing.JFrame} del que se va a responsabilizar
+	 */
 	public FrameManager(JFrame frame) {
 		log.fine("Constructor");
 		this.myFrame=frame;

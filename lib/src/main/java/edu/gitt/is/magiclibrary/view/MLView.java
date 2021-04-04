@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 
 import javax.swing.JMenuBar;
 
-
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
@@ -13,9 +13,9 @@ import java.util.logging.Logger;
 
 
 /**
- * @author Isabel Román
- * <p>Esta clase permite crear un objeto (único) contenedor de la GUI de la aplicación MagicLibrary, de tipo {@link java.swing.JFrame}</p>
+ * <p>Esta clase permite crear un objeto (único) contenedor de la GUI de la aplicación MagicLibrary, de tipo {@link javax.swing.JFrame}</p>
  * <p>Cada vista se configura incluyendo y eliminando los componentes de este contenedor principal</p>
+ * @author Isabel Román
  *
  */
 public class MLView {
@@ -30,14 +30,17 @@ public class MLView {
 	
 
 	/**
-	 * Crea la Vista principal
+	 * Constructor privado, crea la Vista principal
 	 */
 	private MLView() {
-		
+		log.log(Level.INFO,"Constructor de la vista principal de ML");
 	}
-
+    /**
+     * <p>Devuelve la instancia única de gestor de vistas</p>
+     * <p>La primera vez que se invoca crea la vista principal de la aplicación</p>
+     * @return la instancia única de gestor de vistas
+     */
 	public static FrameManagerI getFrameManager() {
-		
 		if (myFrameManager==null){
 			log.info("Creo la vista principal de Magic Library");
 			mainWindow=new MLView();
@@ -45,6 +48,7 @@ public class MLView {
 			frame.setVisible(true);
 			
 		}
+		log.finest("Devuelvo la referencia al FrameManager");
 		return myFrameManager;
 	}
 

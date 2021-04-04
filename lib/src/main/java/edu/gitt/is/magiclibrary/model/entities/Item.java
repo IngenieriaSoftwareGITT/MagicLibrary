@@ -16,10 +16,10 @@ import javax.persistence.JoinColumn;
 
 import java.io.Serializable;
 /**
- * @author Isabel Román
- * @version 0.0
  * <p>Entidad para almacenar los datos de un ejemplar concreto de la biblioteca</p>
  *
+ * @author Isabel Román
+ * @version 0.0
  */
 
 @Entity

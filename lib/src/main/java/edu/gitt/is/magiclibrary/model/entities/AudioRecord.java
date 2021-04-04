@@ -7,11 +7,10 @@ import java.sql.Date;
 
 //import javax.persistence.DiscriminatorValue;
 /**
- * @author Isabel Román
- * @version 0.0
  * <p>Entidad para almacenar los datos de una grabación de audio.</p>
  * <p>Hereda de {@link edu.gitt.is.magiclibrary.model.entities.Title}, los datos particulares a la clase AudioRecord se guardan en una tabla, pero los comunes a Title se guardan en otra</p>
- *
+ * @author Isabel Román
+ * @version 0.0
  */
 
 @Entity

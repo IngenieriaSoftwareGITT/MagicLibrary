@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gitt.is.simplemagiclibrary;
+package edu.gitt.is.simplemagiclibrary.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,8 +20,9 @@ import edu.gitt.is.magiclibrary.model.entities.*;
 
 
 /**
+ * 
+ * <p>Test para probar la clase JpaItemDao, Dao para manejar los ejemplares de la biblioteca</p>
  * @author Isabel Román
- * Test para probar la clase JpaItemDao, Dao para manejar los ejemplares de la biblioteca
  *
  */
 class JpaItemDaoTest {
@@ -39,6 +40,7 @@ class JpaItemDaoTest {
 
 	/**
 	 * @throws java.lang.Exception
+	 * @see org.junit.jupiter.api.BeforeAll
 	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -76,7 +78,8 @@ class JpaItemDaoTest {
 
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaItemDao#JpaItemDao()}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#JpaItemDao()}.
+	 * @see org.junit.jupiter.api.Test
 	 */
 	@Test
 	void testJpaItemDao() {
@@ -84,7 +87,8 @@ class JpaItemDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaItemDao#findById(String)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#findById(String)}.
+	 * @see org.junit.jupiter.api.Test
 	 */
 	@Test
 	void testFindById() {
@@ -92,7 +96,8 @@ class JpaItemDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaItemDao#findAll()}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#findAll()}.
+	 * @see org.junit.jupiter.api.Test
 	 */
 	@Test
 	void testFindAll() {
@@ -120,7 +125,8 @@ class JpaItemDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaItemDao#save(gitt.is.magiclibrary.model.Item)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#save(gitt.is.magiclibrary.model.Item)}.
+	 * @see org.junit.jupiter.api.Test
 	 */
 	@Test
 	void testSave() {
@@ -140,7 +146,8 @@ class JpaItemDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaItemDao#update(gitt.is.magiclibrary.model.Item)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#update(gitt.is.magiclibrary.model.Item)}.
+	 * @see org.junit.jupiter.api.Test
 	 */
 	@Test
 	void testUpdate() {
@@ -148,7 +155,8 @@ class JpaItemDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaItemDao#delete(gitt.is.magiclibrary.model.Item)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#delete(gitt.is.magiclibrary.model.Item)}.
+	 * @see org.junit.jupiter.api.Test
 	 */
 	@Test
 	void testDeleteItem() {
@@ -173,7 +181,8 @@ class JpaItemDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaItemDao#delete(String)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#delete(String)}.
+	 * @see org.junit.jupiter.api.Test
 	 */
 	@Test
 	void testDeleteString() {

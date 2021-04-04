@@ -2,8 +2,6 @@ package edu.gitt.is.magiclibrary.view;
 
 
 import javax.swing.JTextField;
-
-
 import edu.gitt.is.magiclibrary.model.entities.Book;
 
 
@@ -12,14 +10,19 @@ import java.util.logging.Logger;
 
 import javax.swing.JLabel;
 
-import org.jdesktop.beansbinding.AutoBinding;
-import org.jdesktop.beansbinding.BeanProperty;
-import org.jdesktop.beansbinding.BindingGroup;
-import org.jdesktop.beansbinding.Bindings;
-import org.jdesktop.beansbinding.Property;
-import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
-
+/**
+ * <p>Esta clase es la vista para los datos que son exclusivos de los libros (número de páginas e ISBN)</p>
+ * @author Isabel Román
+ *
+ */
 public class BookDetails extends TitleDetails {
+	/**
+	 * Id por defecto, por ser serializable
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
 	private static Logger log=Logger.getLogger(BookDetails.class.getName());
 	
 

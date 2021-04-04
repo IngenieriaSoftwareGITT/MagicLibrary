@@ -14,6 +14,11 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 import java.text.DateFormat;
 
+/**
+ * Esta clase es la vista de los datos comunes a todos los títulos
+ * @author Isabel Román
+ *
+ */
 public class TitleDetails extends EntityDetails<Title> {
 	private static Logger log=Logger.getLogger(TitleDetails.class.getName());
 	/**
@@ -23,7 +28,6 @@ public class TitleDetails extends EntityDetails<Title> {
 	private static final long serialVersionUID = 1L;
 
 	protected JTextField nameField;
-
 	protected JFormattedTextField publishedAtField;
 	protected JTextField authorField;
 	private JLabel publishedAtLabel;
@@ -40,7 +44,7 @@ public class TitleDetails extends EntityDetails<Title> {
 	}
 	/**
 	 * <p>Constructor que invoca el método para crear el panel principal de la vista de títulos y la asocia a un título determinado</p>
-	 * @param title
+	 * @param title entidad de tipo título que se va presentar por pantalla
 	 */
 	public TitleDetails(Title title) {
 		createPanel();		

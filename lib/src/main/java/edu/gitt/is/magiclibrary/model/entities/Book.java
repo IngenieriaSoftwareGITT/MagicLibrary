@@ -2,18 +2,21 @@ package edu.gitt.is.magiclibrary.model.entities;
 
 import javax.persistence.Entity;
 
+import edu.gitt.is.magiclibrary.controller.MagicLibrary;
+
 //import java.sql.Date;
 import java.util.Date;
+import java.util.logging.Logger;
 
 //import javax.persistence.DiscriminatorValue;
 
 /**
- * @author Isabel Román
- * @version 0.0
  * <p>Entidad para los datos de un libro (Book), un tipo concreto de título (Title) </p>
  * <p>Hereda de Title {@link edu.gitt.is.magiclibrary.model.entities.Title} pero se configura para que los datos se guarden en una tabla diferente en la base de datos</p>
  * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p> 
  * <p> La estructura de datos es conforme al proyecto ejemplo de MagiDraw (MagicLibrary) <img src="./doc-files/MLEntities.gif" alt="Modelo de MagicLibrary" height="50%" width="100%"/> </p>
+ * @author Isabel Román
+ * @version 0.0
  */
 @Entity
 //@DiscriminatorValue( value="BK" )
@@ -33,6 +36,10 @@ public class Book extends Title
     */
    private int pages;
    /**
+    * Trazador
+    */
+   private static Logger log=Logger.getLogger(MagicLibrary.class.getName());
+   /**
     * Asignación manual del id
     * @param id identificador unívoco de la grabación audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
@@ -43,9 +50,10 @@ public class Book extends Title
     */
    public Book( String id, String name, String author, Date publishedAt, String isbn,int pages ) 
    {
-      super( id, name, author, publishedAt );
+	  super( id, name, author, publishedAt );
       this.isbn = isbn;
       this.pages = pages;
+      log.info("Construyo un Book pasando todos los datos del libro, incluido el id");
    }
    /**
     * Asigna automática el id
@@ -60,6 +68,7 @@ public class Book extends Title
       super( name, author, date );
       this.isbn = isbn;
       this.pages = pages;
+      log.info("Construyo un Book pasando todos los datos salvo el id, que se asigna automáticamente");
    }
 /**
  * Constructor simple
@@ -67,6 +76,7 @@ public class Book extends Title
    public Book( ) 
    {
       super( );
+      log.info("Construyo un Book vacío");
    }
    /**
     * 

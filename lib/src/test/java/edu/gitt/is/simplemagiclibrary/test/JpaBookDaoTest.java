@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gitt.is.simplemagiclibrary;
+package edu.gitt.is.simplemagiclibrary.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,8 +21,9 @@ import edu.gitt.is.magiclibrary.model.entities.Book;
 
 
 /**
+ * 
+ * <p>Test para probar JpaBookDao, clase para manejar los libros de la biblioteca</p>
  * @author Isabel Román
- * Test para probar JpaBookDao, clase para manejar los libros de la biblioteca
  */
 class JpaBookDaoTest {
 	/**
@@ -36,6 +37,7 @@ class JpaBookDaoTest {
 	
 
 	/**
+	 * {@link org.junit.jupiter.api.BeforeAll}
 	 * @throws java.lang.Exception
 	 */
 	@BeforeAll
@@ -50,6 +52,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
+	 * {@link org.junit.jupiter.api.AfterAll}
 	 * @throws java.lang.Exception
 	 */
 	@AfterAll
@@ -57,6 +60,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
+	 * {@link org.junit.jupiter.api.BeforeEach}
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
@@ -64,6 +68,7 @@ class JpaBookDaoTest {
 	}
 
 	/**
+	 * {@link org.junit.jupiter.api.AfterEach}
 	 * @throws java.lang.Exception
 	 */
 	@AfterEach
@@ -71,7 +76,8 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#findById(String)}.
+	 * <p>Test method for {@link edu.gitt.is.magiclibrary.model.JpaBookDao#findById(String)}.</p>
+	 * {@link org.junit.jupiter.api.Test}
 	 */
 	@Test
 	final void testFindById() {
@@ -79,7 +85,8 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#findAll()}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaBookDao#findAll()}.
+	 * {@link org.junit.jupiter.api.Test}
 	 */
 	@Test
 	final void testFindAll() {
@@ -95,7 +102,8 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#save(gitt.is.magiclibrary.model.Book)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaBookDao#save(gitt.is.magiclibrary.model.Book)}.
+	 * {@link org.junit.jupiter.api.Test}
 	 */
 	@Test
 	final void testSave() {
@@ -122,7 +130,8 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#update(gitt.is.magiclibrary.model.Book)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaBookDao#update(gitt.is.magiclibrary.model.Book)}.
+	 * {@link org.junit.jupiter.api.Test}
 	 */
 	@Test
 	final void testUpdate() {
@@ -130,7 +139,8 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#delete(gitt.is.magiclibrary.model.Book)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaBookDao#delete(gitt.is.magiclibrary.model.Book)}.
+	 * {@link org.junit.jupiter.api.Test}
 	 */
 	@Test
 	final void testDeleteBook() {
@@ -152,7 +162,8 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#delete(java.lang.String)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaBookDao#delete(java.lang.String)}.
+	 * {@link org.junit.jupiter.api.Test}
 	 */
 	@Test
 	final void testDeleteLong() {
@@ -160,7 +171,8 @@ class JpaBookDaoTest {
 	}
 
 	/**
-	 * Test method for {@link gitt.is.magiclibrary.model.JpaBookDao#findBookByAuthor(java.lang.String)}.
+	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaBookDao#findBookByAuthor(java.lang.String)}.
+	 * {@link org.junit.jupiter.api.Test}
 	 */
 	
 	@Test

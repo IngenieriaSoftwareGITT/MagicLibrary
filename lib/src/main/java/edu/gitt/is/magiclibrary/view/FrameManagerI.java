@@ -45,12 +45,12 @@ public interface FrameManagerI {
 	  public void addCenter(JPanel panel);
 	  /**
 	   * Limpia la vista principal y elimina un panel específico
-	   * @param panel
+	   * @param panel panel que se desea eliminar
 	   */
 	  public void discard(JPanel panel);
 	  /**
 	   * Limpia la vista principal de todos los paneles que tenga para añadir uno nuevo
-	   * @param panel
+	   * 
 	   */
 	 
 	  public void reset();
@@ -63,7 +63,7 @@ public interface FrameManagerI {
 	  /**
 	   * Busca un componente por su nombre
 	   * @param componentName El nombre del componente buscado
-	   * @return
+	   * @return El componente que corresponde al nombre
 	   */
 	  public Component getComponentByName(String componentName);
 	  /**
