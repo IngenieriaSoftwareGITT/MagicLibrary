@@ -3,10 +3,10 @@ package edu.gitt.is.magiclibrary.model;
 import java.util.Optional;
 import java.util.List;
 /**
- * @author Isabel Román
- * @version 0.0
  * <p>Esta interfaz declara un modo genérico de manejo de la persistencia de entidades del tipo T</p>
  * <p>Básicamente declara operaciones CRUD (crear, leer, actualizar y borrar la entidad)</p>
+ * @author Isabel Román
+ * @version 0.0
  *
  */
 public interface Dao<T> {

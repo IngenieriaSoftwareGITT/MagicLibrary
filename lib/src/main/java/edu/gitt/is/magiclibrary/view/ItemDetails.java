@@ -12,6 +12,11 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
+/**
+ * Esta clase es la vista para la información detallada de un ejemplar de la biblioteca
+ * @author Isabel Román
+ *
+ */
 public class ItemDetails extends EntityDetails<Item> {
 	private static Logger log=Logger.getLogger(ItemDetails.class.getName());
 	/**
@@ -24,12 +29,17 @@ public class ItemDetails extends EntityDetails<Item> {
 	private JLabel statusLabel;
 
 	private TitleDetails titlePanel;
-	
+	/**
+	 * Constructor simple, construye el objeto en blanco
+	 */
 	public ItemDetails() {
 		createPanel();		
 		
 	}
-
+	/**
+	 * Construye el objeto y lo asocia con una entidad de tipo Item
+	 * @param item Entidad a la que se asocia esta vista
+	 */
 	public ItemDetails(Item item) {
 		createPanel();	
 		setEntity(item);
@@ -72,7 +82,10 @@ public class ItemDetails extends EntityDetails<Item> {
 		super.disableAllAttributes();
 		titlePanel.disableAllAttributes();
 	}
-	
+	/**
+	 * Asocia la entidad pasada como parámetro a esta vista
+	 * @param item Ejemplar al que se asocia esta vista
+	 */
 	public void setEntity(Item item) {
 		this.entity=item;
 		inventoryNrField.setText(item.getInventoryNr());

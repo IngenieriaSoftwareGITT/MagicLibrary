@@ -12,12 +12,13 @@
  * User Manual available at https://docs.gradle.org/6.8/userguide/building_java_projects.html
  *
  *
- * Se han aÃ±adido algunas dependencias y configuraciones para adaptarlo al proyecto que usamos como base en la asignatura IS del GITT
+ * Se han añadido algunas dependencias y configuraciones para adaptarlo al proyecto que usamos como base en la asignatura IS del GITT
  */
 
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+    id 'eclipse'
 }
 
 group = 'gitt.is'
@@ -48,11 +49,19 @@ tasks.withType(Javadoc){
     options.footer = "GITT-Ingenieria Software MagicLibrary"
     title = "Magic Libraryr"
 }
+//Además de descargarse las fuentes se descargará el javadoc correspondiente
+eclipse {
+    classpath {
+        downloadJavadoc = true
+    }
+}
 
 dependencies {
 
 	//Nuestra biblioteca usa la API JPA para persistencia
 	implementation group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1'
+	//Para poder ligar automáticamente un bean con una vista y facilitar la creación de la interfaz gráfica
+	implementation group: 'org.jdesktop', name: 'beansbinding', version: '1.2.1'
 	
 	//El proveedor de JPA que vamos a usar es eclipselink
 	implementation group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.7.8'

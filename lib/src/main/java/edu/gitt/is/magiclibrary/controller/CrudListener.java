@@ -22,15 +22,25 @@ import edu.gitt.is.magiclibrary.view.*;
 
 /**
  * <p>Clase genérica para los controladores que atienden a la vista de cualquier tipo de entidad</p>
+ * <p>Implementará las interfaces {@link java.awt.event.ActionListener} y {@link javax.swing.event.ListSelectionListener}</p>
+ * <p>Participa en el patrón observador como observador</p>
  * @author Isabel Román
  *
  */
 public abstract class CrudListener<T> implements ActionListener, ListSelectionListener{
 	private static Logger log=Logger.getLogger(CrudListener.class.getName());
+	/**
+	 * <p>Vista concreta con la que se asociará este controlador. Participa en el patrón observador como observado</p>
+	 */
 	protected EntityDetails view;
 	private CrudOperation operation;
+	/**
+	 * <p>Entidad manejada por el controlador</p>
+	 */
 	protected T entity;
-	
+	/**
+	 * <p>Objeto de acceso a datos, que permitirá realizar las acciones CRUD para la entidad manejada</p>
+	 */
 	protected Dao entityDao;
    
 /**
@@ -111,7 +121,7 @@ public abstract class CrudListener<T> implements ActionListener, ListSelectionLi
 	/**
 	 * <p>Crea la vista con una única entidad</p>
 	 * <p>La dependencia del estado hace ver que debería utilizarse el patrón "Estado como objeto"</p>
-	 * @param entity
+	 * @param entity Entidad que se quiere presentar por pantalla
 	 */
 	protected void setView(T entity) {
 		log.info("Creando vista con una entidad");
@@ -134,7 +144,7 @@ public abstract class CrudListener<T> implements ActionListener, ListSelectionLi
 	/**
 	 * <p>Crea la vista con un conjunto de entidades/p>
 	 * <p>La dependencia del estado hace ver que debería utilizarse el patrón "Estado como objeto"</p>
-	 * @param entities
+	 * @param entities Lista de entidades que se quieren presentar por pantalla
 	 */
 	protected void setView(List<T> entities) {
 		log.info("Creando vista con múltiples entidades");
@@ -181,7 +191,8 @@ public abstract class CrudListener<T> implements ActionListener, ListSelectionLi
 	
 	}
 	/**
-	 * Establece la vista vacía para buscar una entidad, sólo habilita el campo elegido para buscar
+	 * <p>Establece la vista vacía para buscar una entidad, sólo habilita el campo elegido para buscar, indicado en el parámetro</p>
+	 * @param query Nombre del atributo que se usará para la búsqueda
 	 */
 	protected void setSearchView(String query) {	
 		log.info("Estableciendo vista vacía para buscar");
@@ -193,8 +204,13 @@ public abstract class CrudListener<T> implements ActionListener, ListSelectionLi
 		MLView.getFrameManager().addCenter(view);
 	
 	}
-	
+	/**
+	 * <p>Método de búsqueda, específico de las clases hijas</p>
+	 */
 	protected abstract void search();
+	/**
+	 * <p>Método para guardar, específico de las clases hijas</p>
+	 */
 	protected abstract void save();
 	/**
 	 * <p>Método factoría, serán los hijos los que decidan la clase concreta del objeto vista creado, en este caso vacía (sin relacionar con una instancia de entidad concreta)</p> 

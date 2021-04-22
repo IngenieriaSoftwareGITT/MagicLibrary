@@ -9,6 +9,8 @@ import javax.persistence.Table;
 //import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQuery;
+
 //import java.sql.Date;
 import java.util.Date;
 import java.io.Serializable;
@@ -17,15 +19,28 @@ import java.util.List;
 import java.util.ArrayList;
 /**
  * 
- * @author Isabel Román
  * <p>Entidad para almacenar los datos de un título de la biblioteca, información común a títulos de distinta naturaleza</p>
  * <p>Se elige que en la base de datos se use una tabla para cada tipo concreto de título y una para la información común</p>
- *
+ * {@link javax.persistence.Entity}
+ * {@link javax.persistence.Table}
+ * {@link javax.persistence.Inheritance}
+ * {@link javax.persistence.InheritanceType}
+ * @author Isabel Román
+ * @version 0.0
  */
 @Entity
 @Table
 // @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 // @DiscriminatorColumn( name="type" )
+/**
+ * <p>Query para localizar un título por nombre y autor</p>
+ * @author irm
+ *
+ */
+@NamedQuery(name="Title.findTitleByNameAndAuthor",
+query="SELECT t " +
+      "FROM Title t " +
+      "WHERE t.name = :name AND t.author = :author")
 @Inheritance( strategy = InheritanceType.TABLE_PER_CLASS )
 public class Title implements Serializable{
 
@@ -54,7 +69,8 @@ public class Title implements Serializable{
 	/**
 	 * Lista de ejemplares de este título, puede haber varias, pero un ejemplar sólo puede contener un tíulo
 	 */
-	@OneToMany(mappedBy = "itemInfo", cascade = CascadeType.PERSIST, orphanRemoval = true)
+
+	@OneToMany(mappedBy = "itemInfo", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Item> items = new ArrayList<Item>();
 
 	 /**
@@ -163,7 +179,7 @@ public class Title implements Serializable{
 		this.publishedAt = date;
 	}
 	/**
-	 * 
+	 * @return Devuelve la fecha de publicación
 	 * @param date Fecha de publicación 
 	 */
 	public Date getPublishedAt(Date date) {

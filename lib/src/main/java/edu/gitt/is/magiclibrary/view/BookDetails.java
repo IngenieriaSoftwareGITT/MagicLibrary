@@ -2,8 +2,6 @@ package edu.gitt.is.magiclibrary.view;
 
 
 import javax.swing.JTextField;
-
-
 import edu.gitt.is.magiclibrary.model.entities.Book;
 
 
@@ -11,15 +9,30 @@ import java.text.ParseException;
 import java.util.logging.Logger;
 
 import javax.swing.JLabel;
-import javax.swing.JList;
 
+/**
+ * <p>Esta clase es la vista para los datos que son exclusivos de los libros (número de páginas e ISBN)</p>
+ * @author Isabel Román
+ *
+ */
 public class BookDetails extends TitleDetails {
+	/**
+	 * Id por defecto, por ser serializable
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
 	private static Logger log=Logger.getLogger(BookDetails.class.getName());
+	
+
 	
 	private JTextField isbnField;
 	private JTextField pagesField;
 	private JLabel isbnLabel;
 	private JLabel pagesLabel;
+	
+
 
 
 	
@@ -53,6 +66,7 @@ public class BookDetails extends TitleDetails {
 		isbnField.setBounds(140, 166, 300, 20);
 		add(isbnField);
 		isbnField.setColumns(10);
+	
 		
 		isbnLabel = new JLabel("ISBN");
 		isbnLabel.setBounds(33, 169, 46, 14);
@@ -67,6 +81,7 @@ public class BookDetails extends TitleDetails {
 		pagesLabel = new JLabel("Pages");
 		pagesLabel.setBounds(33, 206, 46, 14);
 		add(pagesLabel);
+	
 		
 		}
 
@@ -97,7 +112,7 @@ public class BookDetails extends TitleDetails {
 				e.printStackTrace();
 			} 
 	
-			//super.setTitle(book);
+			
 			setEntity(book);
 		}else {
 			entity.setAuthor(authorField.getText());
@@ -116,4 +131,5 @@ public class BookDetails extends TitleDetails {
 		
 		return book;
 	}
+	
 }

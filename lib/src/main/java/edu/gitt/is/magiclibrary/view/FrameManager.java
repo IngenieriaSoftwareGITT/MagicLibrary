@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import edu.gitt.is.magiclibrary.controller.CrudListener;
 
 /**
+ * <p>Clase que se respnsabiizará de gestionar una vista, encarnada en un {@link javax.swing.JFrame}</p>
  * @author Isabel Román
  *
  */
@@ -32,8 +33,12 @@ public class FrameManager implements FrameManagerI {
 
 	      
 			
-			
+	/**
+	 * <p>Constructor</p>		
+	 * @param frame Recibe el marco {@link javax.swing.JFrame} del que se va a responsabilizar
+	 */
 	public FrameManager(JFrame frame) {
+		log.fine("Constructor");
 		this.myFrame=frame;
 		myFrame.setBounds(320, 320, 600,600);
 		dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -43,18 +48,20 @@ public class FrameManager implements FrameManagerI {
 	
 	@Override
 	 public void addNorth(JFrame frame) {   
+		log.fine("Añadir arriba");
         myFrame.getContentPane().add(BorderLayout.NORTH, frame);             
         myFrame.setVisible(true);   
     }
 
 	@Override
 	  public void addSouth(JFrame frame) {
+		log.fine("Añadir abajo");
     	myFrame.getContentPane().add(BorderLayout.PAGE_END, frame);  
     	myFrame.setVisible(true);   
     }
 	@Override
 	  public void addSouth(JPanel panel) {
-		log.info("Añadiendo abajo");
+		log.fine("Añadir abajo");
   	myFrame.getContentPane().add(panel, BorderLayout.PAGE_END);
 
   	myFrame.setVisible(true);   
@@ -62,13 +69,14 @@ public class FrameManager implements FrameManagerI {
 
 	@Override
 	  public void addCenter(JFrame frame) {
+		log.fine("Añadir en el centro");
     	myFrame.getContentPane().add(BorderLayout.CENTER, frame);  
     	myFrame.pack();
     	myFrame.setVisible(true);   
 	}
 	@Override
 	  public void addCenter(JPanel panel) {
-		log.info("Añadiendo en el centro");
+		log.fine("Añadir en el centro");
 		myFrame.getContentPane().add(panel,BorderLayout.CENTER);
 		
 		myFrame.setVisible(true);
@@ -76,7 +84,7 @@ public class FrameManager implements FrameManagerI {
 	}
 	@Override
 	public void discard(JPanel panel) {
-		log.info("Limpiando la vista principal");	
+		log.fine("Limpiar la vista principal");	
 		if (panel!=null) {
 			panel.setVisible(false);
 			panel=null;
@@ -85,10 +93,11 @@ public class FrameManager implements FrameManagerI {
 		}
 	@Override
 	public void reset() {
+		log.fine("Resetear");
 		Component[] components = myFrame.getComponents();
 		for (Component c : components){
 			if((c.getClass()==JPanel.class)) {
-				log.info("Encuentro un componente y lo oculto");
+				log.fine("Encuentro un componente y lo oculto");
 				myFrame.getContentPane().remove(c);
 				c.setVisible(false);
 				c=null;
@@ -97,7 +106,7 @@ public class FrameManager implements FrameManagerI {
 	}
 	@Override
 	public void setEntityMenu(String entityName, CrudListener listener) {
-		log.info("Creo el Menu para une entidad llamada "+entityName);
+		log.fine("Creo el Menu para una entidad llamada "+entityName);
 		
 		JMenu menu = new JMenu(entityName);
 		menu.setName(entityName);
@@ -123,7 +132,7 @@ public class FrameManager implements FrameManagerI {
 	}
 	@Override
 	public Component getComponentByName(String componentName) {
-		log.info("Buscando componente por el nombre "+componentName);
+		log.fine("Buscando componente por el nombre "+componentName);
 		Component component=null;
 		Component[] components = myFrame.getComponents();
 		for (Component c : components){
@@ -136,6 +145,7 @@ public class FrameManager implements FrameManagerI {
 	}
 	@Override
 	public DateFormat getDateFormat() {
+		log.fine("Recuperar el formato para fecha");
 		return this.dateFormat;
 	}
 	

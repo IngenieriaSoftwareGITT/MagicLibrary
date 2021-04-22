@@ -10,10 +10,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 /**
- * @author Isabel Román
- * @version 0.0
  * <p> Esta es la clase incluye funcionalidades comunes a los DAO que utilizan la API JPA {@link javax.persistence}</p>
- * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p> 
+ * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p>
+ * @author Isabel Román
+ * @version 0.0 
  */
 public class JpaDaoFeatures {
 	/**

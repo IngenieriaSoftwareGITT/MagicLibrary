@@ -5,6 +5,7 @@ package edu.gitt.is.magiclibrary.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import java.util.logging.Logger;
 
 import javax.swing.event.ListSelectionEvent;
@@ -26,12 +27,14 @@ public class BookListener extends CrudListener<Book> {
 
 	@Override
 	protected void search() {
+		log.fine("Entrando en el método search");
 		String isbn=view.getAttributeAsString("isbn");
 		
-		if((!isbn.isEmpty()) && (isbn!="*")) {
+		if((!isbn.isEmpty()) && (!isbn.contentEquals("*"))) {
 			log.info("Buscando un libro con isbn ="+isbn);
 			Optional<Book> recuperado = ((JpaBookDao) entityDao).findBookByIsbn(view.getAttributeAsString("isbn"));	
 			if(recuperado.isPresent()) {
+				log.finest("Libro encontrado");
 				MLView.getFrameManager().discard(view);
 				setView(recuperado.get());
 			
@@ -66,6 +69,7 @@ public class BookListener extends CrudListener<Book> {
 
 	@Override
 	protected BookDetails newView(Book entity) {
+		log.finest("Construyendo la vista con los valores "+ entity);
 		return new BookDetails(entity);
 	}
 
@@ -77,6 +81,7 @@ public class BookListener extends CrudListener<Book> {
 
 	@Override
 	protected void save() {
+		log.finest("Entrando en método save");
 		entity=((BookDetails) view).getBook();
 		log.info("Voy a guardar la entidad "+entity);
 		((JpaBookDao) entityDao).save((Book) entity);
@@ -86,6 +91,7 @@ public class BookListener extends CrudListener<Book> {
 	 * Establece la vista de libro vacía para buscar un libro, sólo habilita la introducción del isbn, en esa versión sólo busca por isbn o todos los libros
 	 */
 	protected void setSearchView() {	
+		log.finest("Entrando en setSearchView");
 		log.info("Estableciendo vista de libro vacía para buscar por isbn");
 		setSearchView("isbn");
 	

@@ -13,10 +13,11 @@ import edu.gitt.is.magiclibrary.model.entities.Book;
 
 import javax.persistence.PersistenceContext;
 /**
- * @author Isabel Román
- * @version 0.0
  * <p> Esta es la clase para manejar las entidades de tipo Book (libro) {@link edu.gitt.is.magiclibrary.model.entities.Book} y está codificada usando la API JPA {@link javax.persistence}</p>
- * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p> 
+ * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p>
+ * @see javax.persistence.PersistenceContext
+ * @author Isabel Román
+ * @version 0.0 
  */
 @PersistenceContext(unitName = "h2-eclipselink")
 public class JpaBookDao implements Dao<Book> {
