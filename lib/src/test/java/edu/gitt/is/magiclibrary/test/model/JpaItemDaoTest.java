@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.gitt.is.simplemagiclibrary.test;
+package edu.gitt.is.magiclibrary.test.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,18 +10,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.gitt.is.magiclibrary.model.*;
 import edu.gitt.is.magiclibrary.model.entities.*;
+import edu.gitt.is.magiclibrary.model.entities.Item.ItemState;
 
 
 
 /**
  * 
  * <p>Test para probar la clase JpaItemDao, Dao para manejar los ejemplares de la biblioteca</p>
+ * <p>Las clases Item y Book ya están implementadas y se manejan durante este test, al igual que JpaBookDao</p>
  * @author Isabel Román
  *
  */
@@ -39,6 +42,7 @@ class JpaItemDaoTest {
 	static JpaBookDao bookdao;
 
 	/**
+	 * <p>Para las pruebas usaré dos libros, tres ejemplares y un manejador de Libros</p>
 	 * @throws java.lang.Exception
 	 * @see org.junit.jupiter.api.BeforeAll
 	 */
@@ -48,13 +52,13 @@ class JpaItemDaoTest {
 		bookdao =new JpaBookDao();
 		
 		log.info("Creo y persisto dos libros");
-		book1 = new Book("Ingeniería del Software","Ian Sommerville", new Date(111,0,1), "miisbn", 500);
 		
-
+		book1 = new Book("Ingeniería del Software","Ian Sommerville", new Date(111,0,1), "miisbn", 500);
 		bookdao.save(book1);
 		log.info("Libro "+book1+" persistido");
-		book2 = new Book("Ingeniería del Software: un enfoque práctico","Ian Roger S. Pressman", new Date(110,0,1), "otroisbn", 200);
 		
+		
+		book2 = new Book("Ingeniería del Software: un enfoque práctico","Ian Roger S. Pressman", new Date(110,0,1), "otroisbn", 200);
 		bookdao.save(book2);
 		log.info("Libro "+book2+" persistido");
 		
@@ -75,18 +79,21 @@ class JpaItemDaoTest {
 		undertest = new JpaItemDao();
 		log.info("JpaItemDao bajo test creada");
 	}
-
-
 	/**
-	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#JpaItemDao()}.
-	 * @see org.junit.jupiter.api.Test
+	 * <p>Cada test parte de la misma situación en la BBDD, dos libros y ningún ejemplar</p>
+	 * <p>Como los test pueden añadir ejemplares para comenzar otro hay que eliminar los ejemplares previamente</p>
+	 * @throws Exception
 	 */
-	@Test
-	void testJpaItemDao() {
-		fail("Not yet implemented");
-	}
+    @AfterEach
+    void setUpAfterEach() throws Exception{
+    	log.info('\n'+"------Antes de ejecutar un nuevo test elimino todos los ejemplares de la BBDD-----"+'\n');
+    	List<Item> items = undertest.findAll();
+    	items.forEach(item->undertest.delete(item));
+    	items = undertest.findAll();
+    	assertTrue(items.size()==0,"Debería haber borrado todos los ejemplares, pero hay "+items.size());
+    }
 
-	/**
+		/**
 	 * Test method for {@link edu.gitt.is.magiclibrary.model.JpaItemDao#findById(String)}.
 	 * @see org.junit.jupiter.api.Test
 	 */
@@ -100,6 +107,7 @@ class JpaItemDaoTest {
 	 * @see org.junit.jupiter.api.Test
 	 */
 	@Test
+
 	void testFindAll() {
 		log.info('\n'+"------Entro en el método para probar el método findAll-----"+'\n');
 	
@@ -108,7 +116,7 @@ class JpaItemDaoTest {
 		List<Item> items = undertest.findAll();
 		log.info("encontrados: "+items);
 		assertTrue(items.size()==1,"He metido un ejemplar pero hay "+items.size());
-		
+		assertEquals(items.get(0).getItemInfo(),item1.getItemInfo(),"La información del título no coincide con la almacenada");
 		
 		
 		undertest.save(item2);
@@ -137,12 +145,17 @@ class JpaItemDaoTest {
 		if(recuperado.isPresent()){		
 			log.info("Recupero "+recuperado.get());
 			
-			assertEquals(recuperado.get().getStatus(),item1.getStatus());
-			assertEquals(recuperado.get().getItemInfo(),item1.getItemInfo());
+			assertEquals(recuperado.get().getStatus(),item1.getStatus(),"El estado del ejemplar recuperado no es el esperado");
+			assertEquals(recuperado.get().getItemInfo(),item1.getItemInfo(), "La información del ejemplar recuperado no es la esperada");
 			
 		}else {
 			fail("No estaba el ejemplar buscado");
 		}
+		//Verifico que si lo vuelvo a guardar no se duplica
+		undertest.save(item1);
+		
+		List<Item> items= undertest.findAll();
+		assertTrue(items.size()==1,"He metido un ejemplar pero hay "+items.size());
 	}
 
 	/**
@@ -151,7 +164,13 @@ class JpaItemDaoTest {
 	 */
 	@Test
 	void testUpdate() {
-		fail("Not yet implemented");
+		log.info('\n'+"------Entro en el método para probar el método update-----"+'\n');
+		undertest.save(item1);
+		log.info("Persisto "+item1);
+		item1.setStatus(ItemState.LOANED);
+		undertest.update(item1);
+		Optional<Item> recuperado=undertest.findById(item1.getInventoryNr());
+		assertEquals(item1.getStatus(),recuperado.get().getStatus(),"El estado no ha cambiado en la BBDD");
 	}
 
 	/**

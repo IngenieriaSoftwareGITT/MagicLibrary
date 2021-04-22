@@ -9,6 +9,8 @@ import javax.persistence.Table;
 //import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQuery;
+
 //import java.sql.Date;
 import java.util.Date;
 import java.io.Serializable;
@@ -30,6 +32,15 @@ import java.util.ArrayList;
 @Table
 // @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 // @DiscriminatorColumn( name="type" )
+/**
+ * <p>Query para localizar un título por nombre y autor</p>
+ * @author irm
+ *
+ */
+@NamedQuery(name="Title.findTitleByNameAndAuthor",
+query="SELECT t " +
+      "FROM Title t " +
+      "WHERE t.name = :name AND t.author = :author")
 @Inheritance( strategy = InheritanceType.TABLE_PER_CLASS )
 public class Title implements Serializable{
 
@@ -58,7 +69,8 @@ public class Title implements Serializable{
 	/**
 	 * Lista de ejemplares de este título, puede haber varias, pero un ejemplar sólo puede contener un tíulo
 	 */
-	@OneToMany(mappedBy = "itemInfo", cascade = CascadeType.PERSIST, orphanRemoval = true)
+
+	@OneToMany(mappedBy = "itemInfo", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Item> items = new ArrayList<Item>();
 
 	 /**
