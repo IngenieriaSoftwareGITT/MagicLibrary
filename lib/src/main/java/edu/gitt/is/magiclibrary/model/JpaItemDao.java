@@ -7,7 +7,9 @@ import java.util.logging.*;
 
 import javax.persistence.TypedQuery;
 
+import edu.gitt.is.magiclibrary.model.entities.Book;
 import edu.gitt.is.magiclibrary.model.entities.Item;
+import edu.gitt.is.magiclibrary.model.entities.Title;
 
 import javax.persistence.PersistenceContext;
 
@@ -55,18 +57,41 @@ public class JpaItemDao implements Dao<Item> {
 
 	@Override
 	public void save(Item item) {
-		log.info("Voy a persistir el ejemplar\n"+item);
-		jpa.executeInsideTransaction(myEntityManager -> jpa.getEntityManager().merge(item));
+		log.info("\nVoy a persistir el ejemplar\n"+item);
+	
+		/**
+		 * Antes de persistir la entidad debería verifico si el Título asociado existe ya 
+		 * Para eso debo buscar el título usando los parámetros disponibles, el id no está aún, pero si se localiza se asigna
+		 * Si no se crea un título nuevo
+		 */
+		log.info("\nBusco el título: "+item.getItemInfo());
+		try {
+			Optional<Title> title = Optional.ofNullable((Title) jpa.getEntityManager()
+					.createNamedQuery("Title.findTitleByNameAndAuthor")
+					.setParameter("name", item.getItemInfo().getName())
+					.setParameter("author", item.getItemInfo().getAuthor())
+					.getSingleResult());
+			if(title.isPresent()) {
+				log.info("\nLocalizado el título, con id: "+title.get().getId());
+				item.setTitle(title.get());
+			}
+		}catch(javax.persistence.NoResultException e) {
+			log.info("\nTítulo no localizado se creará uno nuevo");
+		}
+				
+		jpa.executeInsideTransaction(myEntityManager -> jpa.getEntityManager().persist(item));
 	}
 
 	@Override
-	public void update(Item t) {
-		// TODO Auto-generated method stub
+	public void update(Item item) {
+		log.info("Voy a actualizar el ejemplar\n"+item);
+		jpa.executeInsideTransaction(myEntityManager -> jpa.getEntityManager().merge(item));
 		
 	}
 
 	@Override
 	public void delete(Item item) {
+		log.info("Voy a eliminar el ejemplar\n"+item);
 		jpa.executeInsideTransaction(myEntityManager->jpa.getEntityManager().remove(item));	
 		
 	}

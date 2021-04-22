@@ -4,8 +4,9 @@
 package edu.gitt.is.magiclibrary.controller;
 
 
+import edu.gitt.is.magiclibrary.model.JpaBookDao;
 import edu.gitt.is.magiclibrary.model.JpaItemDao;
-
+import edu.gitt.is.magiclibrary.model.entities.Book;
 import edu.gitt.is.magiclibrary.model.entities.Item;
 import edu.gitt.is.magiclibrary.view.*;
 
@@ -75,16 +76,17 @@ public class ItemListener extends CrudListener<Item>{
 
 	@Override
 	protected void save() {
+		log.finest("Entrando en método save");
 		entity=((ItemDetails) view).getItem();
 		log.info("Voy a guardar la entidad "+entity);
-		((JpaItemDao) entityDao).save((Item) entity);
 		
+		((JpaItemDao) entityDao).save((Item) entity);
 	}
 	/**
-	 * Establece la vista de libro vacía para buscar un libro, sólo habilita la introducción del número de inventario
+	 * Establece la vista de ejemplar vacía para buscar un libro, sólo habilita la introducción del número de inventario
 	 */
 	protected void setSearchView() {	
-		log.info("Estableciendo vista de libro vacía para buscar por número de inventario");
+		log.info("Estableciendo vista de ejemplar vacía para buscar por número de inventario");
 		setSearchView("inventoryNr");	
 	}
 

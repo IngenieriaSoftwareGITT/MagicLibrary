@@ -112,7 +112,7 @@ public class BookDetails extends TitleDetails {
 				e.printStackTrace();
 			} 
 	
-			//super.setTitle(book);
+			
 			setEntity(book);
 		}else {
 			entity.setAuthor(authorField.getText());

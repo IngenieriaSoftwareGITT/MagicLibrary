@@ -1,5 +1,6 @@
 package edu.gitt.is.magiclibrary.model.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToOne;
 
 
 import javax.persistence.Enumerated;
-
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 
 import java.io.Serializable;
@@ -61,10 +62,10 @@ public class Item implements Serializable{
 	private String inventoryNr;
 	
 	/**
-	 * Título asociado al ejemplar, sólo uno, pero puede haber varios ejemplares con el mismo título
+	 * <p>Título asociado al ejemplar, sólo uno, pero puede haber varios ejemplares con el mismo título</p>
 	 * 
 	 */
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "TITLE")
 	private Title itemInfo;
 	
