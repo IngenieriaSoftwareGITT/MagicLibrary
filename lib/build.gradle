@@ -1,9 +1,9 @@
 /*
- * Este fichero se genera automáticamente con la tarea Gradle 'init'
+ * Este fichero se genera automÃ¡ticamente con la tarea Gradle 'init'
  *
  * Durante este proceso se han escogido las opciones 
  *			- Proyecto tipo biblioteca
- *			- Java como lenguaje de programación
+ *			- Java como lenguaje de programaciÃ³n
  *			- Groovy como lenguaje para el script gradle
  *			- Jupiter (JUnit5) como entorno de tests
  *
@@ -12,7 +12,7 @@
  * User Manual available at https://docs.gradle.org/6.8/userguide/building_java_projects.html
  *
  *
- * Se han a�adido algunas dependencias y configuraciones para adaptarlo al proyecto que usamos como base en la asignatura IS del GITT
+ * Se han añadido algunas dependencias y configuraciones para adaptarlo al proyecto que usamos como base en la asignatura IS del GITT
  */
 
 plugins {
@@ -31,14 +31,14 @@ repositories {
     jcenter()
 }
 tasks.withType(JavaCompile) {
-	description = "Compilaci�n del c�digo"
-    //A�adir la opci�n Xlint
+	description = "Compilación del código"
+    //Añadir la opción Xlint
     options.deprecation = true
     options.encoding = 'ISO-8859-1'
 }
 tasks.withType(Javadoc){
     description = "Genera la documentacion"
-    //indicar que la codificaci�n es ISO
+    //indicar que la codificación es ISO
     options.docEncoding = 'ISO-8859-1'
     options.charSet = 'ISO-8859-1'
     options.docFilesSubDirs = true
@@ -49,7 +49,7 @@ tasks.withType(Javadoc){
     options.footer = "GITT-Ingenieria Software MagicLibrary"
     title = "Magic Libraryr"
 }
-//Adem�s de descargarse las fuentes se descargar� el javadoc correspondiente
+//Además de descargarse las fuentes se descargará el javadoc correspondiente
 eclipse {
     classpath {
         downloadJavadoc = true
@@ -58,30 +58,30 @@ eclipse {
 
 dependencies {
 
-	//Nuestra biblioteca usa la API JPA para persistencia
-	implementation group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1'
-	//Para poder ligar autom�ticamente un bean con una vista y facilitar la creaci�n de la interfaz gr�fica
-	implementation group: 'org.jdesktop', name: 'beansbinding', version: '1.2.1'
+   //Nuestra biblioteca usa la API JPA para persistencia
+   implementation group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.1.1'
+   //Para poder ligar automáticamente un bean con una vista y facilitar la creación de la interfaz gráfica
+   implementation group: 'org.jdesktop', name: 'beansbinding', version: '1.2.1'
 	
-	//El proveedor de JPA que vamos a usar es eclipselink
-	implementation group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.7.8'
+   //El proveedor de JPA que vamos a usar es eclipselink
+   implementation group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.7.8'
 
 
-	//Usaremos la base de datos h2, una base de datos ligera en memoria (la información no persiste en realidad, sólo durante la ejecución)
-	//implementation 'com.h2database:h2'
-	runtime group: 'com.h2database', name: 'h2', version: '1.4.200'
+    //Usaremos la base de datos h2, una base de datos ligera en memoria (la informaciÃ³n no persiste en realidad, sÃ³lo durante la ejecuciÃ³n)
+    //implementation 'com.h2database:h2'
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 	
-	// Usamos la API JUnit Jupiter para las pruebas de código
+    // Usamos la API JUnit Jupiter para las pruebas de cÃ³digo
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
 	
-	// Usamos JUnit Jupiter Engine para las pruebas de código
+    // Usamos JUnit Jupiter Engine para las pruebas de cÃ³digo
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testImplementation 'org.junit.platform:junit-platform-engine:+'
-    //A�ado para usar mockito
-    testCompile "org.mockito:mockito-core:2.+" 
-    testCompile "org.mockito:mockito-junit-jupiter:2.+"
+    //Añado para usar mockito
+    testImplementation "org.mockito:mockito-core:2.+" 
+    testImplementation "org.mockito:mockito-junit-jupiter:2.+"
 	
-	//Las siguientes dos dependencias las introduce gradle automáticamente
+	//Las siguientes dos dependencias las introduce gradle automÃ¡ticamente
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api 'org.apache.commons:commons-math3:3.6.1'
