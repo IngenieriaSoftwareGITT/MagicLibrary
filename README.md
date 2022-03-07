@@ -1,12 +1,12 @@
-MagicLibrary
+# MagicLibrary
 
-Repositorio para el cÛdigo base de la asignatura IngenierÌa Software, de 3∫ del GITT de la Universidad de Sevilla
+Repositorio para el c√≥digo base de la asignatura [Ingenier√≠a Software](https://www.us.es/estudiar/que-estudiar/oferta-de-grados/grado-en-ingenieria-de-las-tecnologias-de-telecomunicacion/1990039), de 3¬∫ del GITT de la Universidad de Sevilla
 
-Est· basado en el diseÒoo del Tutorial UML que incluye MagicDraw, y que se utiliza en las pr·cticas de la asignatura
+Est√° basado en el dise√±o del Tutorial UML que incluye [MagicDraw](https://www.3ds.com/products-services/catia/products/no-magic/magicdraw/), y que se utiliza en las pr√°cticas de la asignatura
 
-Para el Modelo se utiliza la API JPA, con eclipselink como proveedor y la base de datos H2 (en memoria), que habrÌa que cambiar en el entorno de operaciÛn
+- Para el Modelo se utiliza la API [JPA](https://www.oracle.com/technical-resources/articles/java/jpa.html), con [eclipselink](https://www.eclipse.org/eclipselink/) como proveedor y la base de datos [H2](https://h2database.com/html/main.html) (en memoria), que habr√≠a que cambiar en el entorno de operaci√≥n
 
-Para la Vista se utiliza Swing
+- Para la Vista se utiliza [Swing](https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html)
 
-Est· organizado como un proyecto Gradle e incluye el gradle wrapper, aunque para las pr·cticas no ser· obligatorio utilizarlo
+- Est√° organizado como un proyecto [Gradle](https://gradle.org/) e incluye el gradle wrapper, aunque para las pr√°cticas no ser√° obligatorio utilizarlo
 
