@@ -23,7 +23,7 @@ plugins {
 
 group = 'gitt.is'
 version = '0.0.1-PRACTICAS'
-//sourceCompatibility = '1.8'
+sourceCompatibility = '1.8'
 
 
 repositories {
@@ -69,7 +69,7 @@ dependencies {
 
 	//Usaremos la base de datos h2, una base de datos ligera en memoria (la informaci贸n no persiste en realidad, s贸lo durante la ejecuci贸n)
 	//implementation 'com.h2database:h2'
-	runtime group: 'com.h2database', name: 'h2', version: '1.4.200'
+	implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 	
 	// Usamos la API JUnit Jupiter para las pruebas de c贸digo
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
@@ -78,8 +78,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testImplementation 'org.junit.platform:junit-platform-engine:+'
     //A馻do para usar mockito
-    testCompile "org.mockito:mockito-core:2.+" 
-    testCompile "org.mockito:mockito-junit-jupiter:2.+"
+    testImplementation "org.mockito:mockito-core:2.+" 
+    testImplementation "org.mockito:mockito-junit-jupiter:2.+"
 	
 	//Las siguientes dos dependencias las introduce gradle autom谩ticamente
 
