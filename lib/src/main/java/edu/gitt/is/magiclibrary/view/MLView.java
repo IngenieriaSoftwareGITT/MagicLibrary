@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import javax.swing.JMenuBar;
 
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,6 +66,7 @@ public class MLView {
 		JMenuBar menuBar = new JMenuBar();
 	
 		frame.setJMenuBar(menuBar);	
+		frame.setBackground(Color.cyan);
 		menuBar.setVisible(true);
 	}
 	

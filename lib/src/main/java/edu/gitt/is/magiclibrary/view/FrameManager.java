@@ -4,6 +4,7 @@
 package edu.gitt.is.magiclibrary.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -42,6 +43,7 @@ public class FrameManager implements FrameManagerI {
 		this.myFrame=frame;
 		myFrame.setBounds(320, 320, 600,600);
 		dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}

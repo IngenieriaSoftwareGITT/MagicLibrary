@@ -4,6 +4,8 @@
 package edu.gitt.is.magiclibrary.controller;
 
 import java.util.logging.Level;
+import javax.swing.plaf.basic.BasicLookAndFeel;
+import javax.swing.UIManager;
 import java.util.logging.Logger;
 
 import edu.gitt.is.magiclibrary.view.MLView;
@@ -36,7 +38,11 @@ public class MagicLibrary {
 	 * @param args Actualmente el programa no analiza los parámetros de entrada al main
 	 */
 	public static void main(String[] args) {
-		
+		try {
+		   UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		}catch(Exception e) {
+			log.severe("Excepción capturada "+e);
+		}		
 		log.info("Arranco la aplicación y creo el controlador para manejar entidades desde la interfaz");
 		log.log(Level.INFO, "Arranco la aplicación y creo el controlador para manejar entidades desde la interfaz");
 
