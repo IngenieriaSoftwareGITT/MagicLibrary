@@ -6,10 +6,10 @@
 	<persistence-unit name="h2-eclipselink"
 		              transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>gitt.is.simplemagiclibrary.Title</class>
-		<class>gitt.is.simplemagiclibrary.Book</class>
-		<class>gitt.is.simplemagiclibrary.AudioRecord</class>
-		<class>gitt.is.simplemagiclibrary.Item</class>
+		<class>edu.gitt.is.magiclibrary.model.entities.Title</class>
+		<class>edu.gitt.is.magiclibrary.model.entities.Book</class>
+		<class>edu.gitt.is.magiclibrary.model.entities.AudioRecord</class>
+		<class>edu.gitt.is.magiclibrary.model.entities.Item</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 		    <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />

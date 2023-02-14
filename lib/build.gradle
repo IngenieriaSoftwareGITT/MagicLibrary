@@ -23,7 +23,7 @@ plugins {
 
 group = 'gitt.is'
 version = '0.0.1-PRACTICAS'
-//sourceCompatibility = '1.8'
+sourceCompatibility = '1.8'
 
 
 repositories {
@@ -66,10 +66,10 @@ dependencies {
    //El proveedor de JPA que vamos a usar es eclipselink
    implementation group: 'org.eclipse.persistence', name: 'eclipselink', version: '2.7.8'
 
+	//Usaremos la base de datos h2, una base de datos ligera en memoria (la información no persiste en realidad, sólo durante la ejecución)
+	//implementation 'com.h2database:h2'
+	implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
-    //Usaremos la base de datos h2, una base de datos ligera en memoria (la informaciÃ³n no persiste en realidad, sÃ³lo durante la ejecuciÃ³n)
-    //implementation 'com.h2database:h2'
-    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 	
     // Usamos la API JUnit Jupiter para las pruebas de cÃ³digo
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
@@ -77,7 +77,9 @@ dependencies {
     // Usamos JUnit Jupiter Engine para las pruebas de cÃ³digo
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testImplementation 'org.junit.platform:junit-platform-engine:+'
+
     //Añado para usar mockito
+
     testImplementation "org.mockito:mockito-core:2.+" 
     testImplementation "org.mockito:mockito-junit-jupiter:2.+"
 	
