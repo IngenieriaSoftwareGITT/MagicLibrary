@@ -2,8 +2,8 @@
 ![GitHub forks](https://img.shields.io/github/forks/IngenieriaSoftwareGITT/MagicLibrary?style=social)
 ![GitHub contributors](https://img.shields.io/github/contributors/IngenieriaSoftwareGITT/MagicLibrary)
 ![GitHub Repo stars](https://img.shields.io/github/stars/IngenieriaSoftwareGITT/MagicLibrary?style=social)
-![GitHub repo size]https://img.shields.io/github/repo-size/IngenieriaSoftwareGITT/MagicLibrary
-![GitHub watchers]https://img.shields.io/github/watchers/IngenieriaSoftwareGITT/MagicLibrary
+![GitHub repo size](https://img.shields.io/github/repo-size/IngenieriaSoftwareGITT/MagicLibrary)
+![GitHub watchers](https://img.shields.io/github/watchers/IngenieriaSoftwareGITT/MagicLibrary)
 # MagicLibrary
 
 Repositorio para el código base de la asignatura [Ingeniería Software](https://www.us.es/estudiar/que-estudiar/oferta-de-grados/grado-en-ingenieria-de-las-tecnologias-de-telecomunicacion/1990039), de 3º del GITT de la Universidad de Sevilla
