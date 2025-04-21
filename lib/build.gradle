@@ -72,11 +72,9 @@ dependencies {
 
 	
     // Usamos la API JUnit Jupiter para las pruebas de cÃ³digo
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
-	
-    // Usamos JUnit Jupiter Engine para las pruebas de cÃ³digo
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    testImplementation 'org.junit.platform:junit-platform-engine:+'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+	testImplementation 'org.junit.platform:junit-platform-engine:1.9.3'
 
     //Añado para usar mockito
 
