@@ -4,24 +4,24 @@ package edu.gitt.is.magiclibrary.model;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
 
 /**
  * <p> Esta es la clase incluye funcionalidades comunes a los DAO que utilizan la API JPA {@link javax.persistence}</p>
- * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p>
- * @author Isabel Román
+ * <p> Se sigue el patrï¿½n DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrï¿½n DAO</a></p>
+ * @author Isabel Romï¿½n
  * @version 0.0 
  */
 public class JpaDaoFeatures {
 	/**
-	 * Para trazar el código {@link java.util.logging}
+	 * Para trazar el cï¿½digo {@link java.util.logging}
 	 */
 	private static final Logger log = Logger.getLogger(JpaDaoFeatures.class.toString());
 	/**
-	 * Referencia a la fábrica de gestores de entidad
+	 * Referencia a la fï¿½brica de gestores de entidad
 	 */
 	private static EntityManagerFactory emf=null;
 	/**
@@ -29,7 +29,7 @@ public class JpaDaoFeatures {
 	 */
 	private static EntityManager myEntityManager=null;
 	/**
-	 * Referencia a la instancia única
+	 * Referencia a la instancia ï¿½nica
 	 */
 	private static JpaDaoFeatures myInstance=null;
 	
@@ -40,8 +40,8 @@ public class JpaDaoFeatures {
 		
 	}
 	/**
-	 * Esta clase sigue el patrón singleton <a href="https://www.javacodegeeks.com/2015/09/singleton-design-pattern.html">Patrón Singleton</a>
-	 * @return referencia al ejemplar único
+	 * Esta clase sigue el patrï¿½n singleton <a href="https://www.javacodegeeks.com/2015/09/singleton-design-pattern.html">Patrï¿½n Singleton</a>
+	 * @return referencia al ejemplar ï¿½nico
 	 */
 	public static JpaDaoFeatures getInstance() {
 		if (myInstance==null){
@@ -49,23 +49,23 @@ public class JpaDaoFeatures {
 			log.info("Creando un nuevo EntityManager");
 			try {
 				if(emf==null) {
-					log.info("Comienzo creando la factoría de EntityManager\n");
+					log.info("Comienzo creando la factorï¿½a de EntityManager\n");
 					emf =
 						Persistence.createEntityManagerFactory("h2-eclipselink");
-						log.info("A continuación creo un entityManager, usando la factoría\n");
+						log.info("A continuaciï¿½n creo un entityManager, usando la factorï¿½a\n");
 				}
 				myEntityManager = emf.createEntityManager();
 			}
 			catch(Throwable ex) {
-				log.severe("Ha fallado la creación de SessionFactory "+ex+"\n");
+				log.severe("Ha fallado la creaciï¿½n de SessionFactory "+ex+"\n");
 				throw new ExceptionInInitializerError(ex);
 			}	
 		}
 		return myInstance;
 	}
 /**
- * Ejecuta la acción dentro de una transacción JPA
- * @param action Acción a ejecutar
+ * Ejecuta la acciï¿½n dentro de una transacciï¿½n JPA
+ * @param action Acciï¿½n a ejecutar
  */
 	public void executeInsideTransaction(Consumer<EntityManager> action) {
 		

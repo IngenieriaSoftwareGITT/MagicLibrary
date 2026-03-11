@@ -1,6 +1,6 @@
 package edu.gitt.is.magiclibrary.model.entities;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 import edu.gitt.is.magiclibrary.controller.MagicLibrary;
 
@@ -11,11 +11,11 @@ import java.util.logging.Logger;
 //import javax.persistence.DiscriminatorValue;
 
 /**
- * <p>Entidad para los datos de un libro (Book), un tipo concreto de título (Title) </p>
+ * <p>Entidad para los datos de un libro (Book), un tipo concreto de tï¿½tulo (Title) </p>
  * <p>Hereda de Title {@link edu.gitt.is.magiclibrary.model.entities.Title} pero se configura para que los datos se guarden en una tabla diferente en la base de datos</p>
- * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p> 
+ * <p> Se sigue el patrï¿½n DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrï¿½n DAO</a></p> 
  * <p> La estructura de datos es conforme al proyecto ejemplo de MagiDraw (MagicLibrary) <img src="./doc-files/MLEntities.gif" alt="Modelo de MagicLibrary" height="50%" width="100%"/> </p>
- * @author Isabel Román
+ * @author Isabel Romï¿½n
  * @version 0.0
  */
 @Entity
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class Book extends Title 
 {
    /**
-	 * Aceptado el número de serie por defecto
+	 * Aceptado el nï¿½mero de serie por defecto
 	 */
    private static final long serialVersionUID = 1L;
    /**
@@ -32,7 +32,7 @@ public class Book extends Title
     */
    private String isbn;
    /**
-    * Número de páginas
+    * Nï¿½mero de pï¿½ginas
     */
    private int pages;
    /**
@@ -40,13 +40,13 @@ public class Book extends Title
     */
    private static Logger log=Logger.getLogger(MagicLibrary.class.getName());
    /**
-    * Asignación manual del id
-    * @param id identificador unívoco de la grabación audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * Asignaciï¿½n manual del id
+    * @param id identificador unï¿½voco de la grabaciï¿½n audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
-    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param publishedAt Fecha de publicaciï¿½n {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param isbn El ISBN del libro
-    * @param pages Número de páginas
+    * @param pages Nï¿½mero de pï¿½ginas
     */
    public Book( String id, String name, String author, Date publishedAt, String isbn,int pages ) 
    {
@@ -56,19 +56,19 @@ public class Book extends Title
       log.info("Construyo un Book pasando todos los datos del libro, incluido el id");
    }
    /**
-    * Asigna automática el id
+    * Asigna automï¿½tica el id
     * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
-    * @param date Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param date Fecha de publicaciï¿½n {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param isbn El ISBN del libro
-    * @param pages Número de páginas
+    * @param pages Nï¿½mero de pï¿½ginas
     */
    public Book( String name, String author, Date date, String isbn,int pages ) 
    {
       super( name, author, date );
       this.isbn = isbn;
       this.pages = pages;
-      log.info("Construyo un Book pasando todos los datos salvo el id, que se asigna automáticamente");
+      log.info("Construyo un Book pasando todos los datos salvo el id, que se asigna automï¿½ticamente");
    }
 /**
  * Constructor simple
@@ -76,7 +76,7 @@ public class Book extends Title
    public Book( ) 
    {
       super( );
-      log.info("Construyo un Book vacío");
+      log.info("Construyo un Book vacï¿½o");
    }
    /**
     * 
@@ -97,7 +97,7 @@ public class Book extends Title
    }
   /**
    * 
-   * @return Número de páginas
+   * @return Nï¿½mero de pï¿½ginas
    */
 
    public int getPages( ) 
@@ -106,14 +106,14 @@ public class Book extends Title
    }
 /**
  * 
- * @param pages Número de páginas
+ * @param pages Nï¿½mero de pï¿½ginas
  */
    public void setPages( int pages )
    {
       this.pages = pages;
    }
    /**
-    * Sobreescribo el método toString para tener una representación más clara del objeto al depurar
+    * Sobreescribo el mï¿½todo toString para tener una representaciï¿½n mï¿½s clara del objeto al depurar
     */
 	@Override
 	public String toString() {
