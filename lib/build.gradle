@@ -68,7 +68,7 @@ dependencies {
     implementation 'com.h2database:h2:2.2.224'
 
     // Beansbinding (Cuidado: es una librería muy antigua, 
-    // asegúrate de que tus alumnos no tengan conflictos con Java 17+)
+    // asegurar que no hay conflictos con Java 17+)
     implementation 'org.jdesktop:beansbinding:1.2.1'
 	
     // JUnit 5 - Usamos el "bom" para asegurar que todas las piezas de JUnit coincidan
