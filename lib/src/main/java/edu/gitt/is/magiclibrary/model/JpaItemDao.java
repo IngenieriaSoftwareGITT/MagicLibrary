@@ -5,24 +5,24 @@ import java.util.Optional;
 
 import java.util.logging.*;
 
-import javax.persistence.TypedQuery;
+import jakarta.persistence.TypedQuery;
 
 import edu.gitt.is.magiclibrary.model.entities.Book;
 import edu.gitt.is.magiclibrary.model.entities.Item;
 import edu.gitt.is.magiclibrary.model.entities.Title;
 
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceContext;
 
 /**
- * <p> Esta es la clase para manejar las entidades de tipo Item (ejemplar) {@link edu.gitt.is.magiclibrary.model.entities.Item} y está codificada usando la API JPA {@link javax.persistence}</p>
- * <p> Se sigue el patrón DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrón DAO</a></p>
- * @author Isabel Román
+ * <p> Esta es la clase para manejar las entidades de tipo Item (ejemplar) {@link edu.gitt.is.magiclibrary.model.entities.Item} y estï¿½ codificada usando la API JPA {@link javax.persistence}</p>
+ * <p> Se sigue el patrï¿½n DAO, puede ver un ejemplo en <a href="https://www.baeldung.com/java-dao-pattern">Ejemplo patrï¿½n DAO</a></p>
+ * @author Isabel Romï¿½n
  * @version 0.0 
  */
 @PersistenceContext(unitName = "h2-eclipselink")
 public class JpaItemDao implements Dao<Item> {
 	/**
-	 * Para trazar el código {@link java.util.logging}
+	 * Para trazar el cï¿½digo {@link java.util.logging}
 	 */
 	private static final Logger log = Logger.getLogger(JpaItemDao.class.toString());
 	/**
@@ -60,11 +60,11 @@ public class JpaItemDao implements Dao<Item> {
 		log.info("\nVoy a persistir el ejemplar\n"+item);
 	
 		/**
-		 * Antes de persistir la entidad debería verifico si el Título asociado existe ya 
-		 * Para eso debo buscar el título usando los parámetros disponibles, el id no está aún, pero si se localiza se asigna
-		 * Si no se crea un título nuevo
+		 * Antes de persistir la entidad deberï¿½a verifico si el Tï¿½tulo asociado existe ya 
+		 * Para eso debo buscar el tï¿½tulo usando los parï¿½metros disponibles, el id no estï¿½ aï¿½n, pero si se localiza se asigna
+		 * Si no se crea un tï¿½tulo nuevo
 		 */
-		log.info("\nBusco el título: "+item.getItemInfo());
+		log.info("\nBusco el tï¿½tulo: "+item.getItemInfo());
 		try {
 			Optional<Title> title = Optional.ofNullable((Title) jpa.getEntityManager()
 					.createNamedQuery("Title.findTitleByNameAndAuthor")
@@ -72,11 +72,11 @@ public class JpaItemDao implements Dao<Item> {
 					.setParameter("author", item.getItemInfo().getAuthor())
 					.getSingleResult());
 			if(title.isPresent()) {
-				log.info("\nLocalizado el título, con id: "+title.get().getId());
+				log.info("\nLocalizado el tï¿½tulo, con id: "+title.get().getId());
 				item.setTitle(title.get());
 			}
-		}catch(javax.persistence.NoResultException e) {
-			log.info("\nTítulo no localizado se creará uno nuevo");
+		}catch(jakarta.persistence.NoResultException e) {
+			log.info("\nTï¿½tulo no localizado se crearï¿½ uno nuevo");
 		}
 				
 		jpa.executeInsideTransaction(myEntityManager -> jpa.getEntityManager().persist(item));

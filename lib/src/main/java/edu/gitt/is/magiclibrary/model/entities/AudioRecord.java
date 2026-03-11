@@ -1,15 +1,15 @@
 package edu.gitt.is.magiclibrary.model.entities;
 
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 import java.sql.Date;
 
 //import javax.persistence.DiscriminatorValue;
 /**
- * <p>Entidad para almacenar los datos de una grabación de audio.</p>
+ * <p>Entidad para almacenar los datos de una grabaciï¿½n de audio.</p>
  * <p>Hereda de {@link edu.gitt.is.magiclibrary.model.entities.Title}, los datos particulares a la clase AudioRecord se guardan en una tabla, pero los comunes a Title se guardan en otra</p>
- * @author Isabel Román
+ * @author Isabel Romï¿½n
  * @version 0.0
  */
 
@@ -19,7 +19,7 @@ import java.sql.Date;
 public class AudioRecord extends Title 
 {
    /**
-	 * Añadido número de serie por defecto
+	 * Aï¿½adido nï¿½mero de serie por defecto
 	 */
    private static final long serialVersionUID = 1L;
    /**
@@ -27,22 +27,22 @@ public class AudioRecord extends Title
     */
    private String label;
    /**
-    * Duración de la grabación
+    * Duraciï¿½n de la grabaciï¿½n
     */
    private int duration;
    /**
-    * Número de pistas
+    * Nï¿½mero de pistas
     */
    private String tracks;
    /**
     * 
-    * @param id identificador unívoco de la grabación audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param id identificador unï¿½voco de la grabaciï¿½n audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
-    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param publishedAt Fecha de publicaciï¿½n {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param label Etiqueta
-    * @param duration Duración
-    * @param tracks Número de Tracks
+    * @param duration Duraciï¿½n
+    * @param tracks Nï¿½mero de Tracks
     */
 
    public AudioRecord(String id, String name, String author, Date publishedAt, String label,int duration, String tracks) 
@@ -56,10 +56,10 @@ public class AudioRecord extends Title
     * 
     * @param name Nombre {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
-    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
+    * @param publishedAt Fecha de publicaciï¿½n {@link edu.gitt.is.magiclibrary.model.entities.Title}
     * @param label Etiqueta
-    * @param duration Duración
-    * @param tracks Número de Tracks
+    * @param duration Duraciï¿½n
+    * @param tracks Nï¿½mero de Tracks
     */
    
    public AudioRecord( String name, String author, Date publishedAt, String label,int duration, String tracks) 
@@ -94,7 +94,7 @@ public class AudioRecord extends Title
    }
 /**
  * 
- * @return Duración de la grabación
+ * @return Duraciï¿½n de la grabaciï¿½n
  */
    public int getDuration( ) 
    {
@@ -102,14 +102,14 @@ public class AudioRecord extends Title
    }
 /**
  * 
- * @param duration Duración de la grabación
+ * @param duration Duraciï¿½n de la grabaciï¿½n
  */
    public void setDuration( int duration )
    {
       this.duration = duration;
    }
    /**
-    * Sobreescribo el método toString para tener una representación más clara del objeto al depurar
+    * Sobreescribo el mï¿½todo toString para tener una representaciï¿½n mï¿½s clara del objeto al depurar
     */
 	@Override
 	public String toString() {

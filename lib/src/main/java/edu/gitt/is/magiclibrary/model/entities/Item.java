@@ -1,32 +1,32 @@
 package edu.gitt.is.magiclibrary.model.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 
 
 
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 
 import java.io.Serializable;
 /**
  * <p>Entidad para almacenar los datos de un ejemplar concreto de la biblioteca</p>
  *
- * @author Isabel Román
+ * @author Isabel Romï¿½n
  * @version 0.0
  */
 
 @Entity
 public class Item implements Serializable{
 	/**
-	 * Añadido el número de serie por defecto
+	 * Aï¿½adido el nï¿½mero de serie por defecto
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
@@ -55,14 +55,14 @@ public class Item implements Serializable{
 		LOST
 	}
 	/**
-	 * Id unívoco
+	 * Id unï¿½voco
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String inventoryNr;
 	
 	/**
-	 * <p>Título asociado al ejemplar, sólo uno, pero puede haber varios ejemplares con el mismo título</p>
+	 * <p>Tï¿½tulo asociado al ejemplar, sï¿½lo uno, pero puede haber varios ejemplares con el mismo tï¿½tulo</p>
 	 * 
 	 */
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -84,7 +84,7 @@ public class Item implements Serializable{
 	}
 	/**
 	 * 
-	 * @param title El título concreto de este ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	 * @param title El tï¿½tulo concreto de este ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	 * @param status Estado en el que se construye el ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Item.ItemState}
 	 */
 	public Item(Title title, ItemState status) {
@@ -94,7 +94,7 @@ public class Item implements Serializable{
 	}
 	/**
 	 * Se construye en estado disponible {@link edu.gitt.is.magiclibrary.model.entities.Item.ItemState}
-	 * @param title El título concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	 * @param title El tï¿½tulo concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	 */
 	public Item(Title title) {
 		super();
@@ -103,14 +103,14 @@ public class Item implements Serializable{
 	}
 	/**
 	 * 
-	 * @return El título concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	 * @return El tï¿½tulo concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	 */
 	public Title getItemInfo() {
 		return itemInfo;
 	}
 	/**
 	 * 
-	 * @param title El título concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	 * @param title El tï¿½tulo concreto del ejemplar {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	 */
 	public void setTitle(Title title) {
 		this.itemInfo = title;
@@ -124,14 +124,14 @@ public class Item implements Serializable{
 	}
 	/**
 	 * 
-	 * @return Identificador unívoco del ejemplar
+	 * @return Identificador unï¿½voco del ejemplar
 	 */
 	public String getInventoryNr() {
 		return this.inventoryNr;
 	}
 	/**
 	 * 
-	 * @param number Identificador unívoco del ejemplar
+	 * @param number Identificador unï¿½voco del ejemplar
 	 */
 	public void setInventoryNr(String number) {
 		this.inventoryNr = number;
@@ -144,7 +144,7 @@ public class Item implements Serializable{
 		this.status = status;
 	}
 	 /**
-	    * Sobreescribo el método toString para tener una representación más clara del objeto al depurar
+	    * Sobreescribo el mï¿½todo toString para tener una representaciï¿½n mï¿½s clara del objeto al depurar
 	    */
 	@Override
 	public String toString() {

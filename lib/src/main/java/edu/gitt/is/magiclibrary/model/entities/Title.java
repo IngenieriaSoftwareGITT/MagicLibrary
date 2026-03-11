@@ -1,31 +1,31 @@
 package edu.gitt.is.magiclibrary.model.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-//import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.NamedQuery;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+//import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.NamedQuery;
 
 //import java.sql.Date;
 import java.util.Date;
 import java.io.Serializable;
-import javax.persistence.OneToMany;
+import jakarta.persistence.OneToMany;
 import java.util.List;
 import java.util.ArrayList;
 /**
  * 
- * <p>Entidad para almacenar los datos de un título de la biblioteca, información común a títulos de distinta naturaleza</p>
- * <p>Se elige que en la base de datos se use una tabla para cada tipo concreto de título y una para la información común</p>
- * {@link javax.persistence.Entity}
- * {@link javax.persistence.Table}
- * {@link javax.persistence.Inheritance}
- * {@link javax.persistence.InheritanceType}
- * @author Isabel Román
+ * <p>Entidad para almacenar los datos de un tï¿½tulo de la biblioteca, informaciï¿½n comï¿½n a tï¿½tulos de distinta naturaleza</p>
+ * <p>Se elige que en la base de datos se use una tabla para cada tipo concreto de tï¿½tulo y una para la informaciï¿½n comï¿½n</p>
+ * {@link jakarta.persistence.Entity}
+ * {@link jakarta.persistence.Table}
+ * {@link jakarta.persistence.Inheritance}
+ * {@link jakarta.persistence.InheritanceType}
+ * @author Isabel Romï¿½n
  * @version 0.0
  */
 @Entity
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 // @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 // @DiscriminatorColumn( name="type" )
 /**
- * <p>Query para localizar un título por nombre y autor</p>
+ * <p>Query para localizar un tï¿½tulo por nombre y autor</p>
  * @author irm
  *
  */
@@ -45,17 +45,17 @@ query="SELECT t " +
 public class Title implements Serializable{
 
 	/**
-	 * Añadido el número de serie por defecto
+	 * Aï¿½adido el nï¿½mero de serie por defecto
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Identificador unívoco
+	 * Identificador unï¿½voco
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
  	private String id;
 	/**
-	 * Nombre del Título
+	 * Nombre del Tï¿½tulo
 	 */
 	private String name;
 	/**
@@ -63,22 +63,22 @@ public class Title implements Serializable{
 	 */
 	private String author;
 	/**
-	 * Fecha de publicación
+	 * Fecha de publicaciï¿½n
 	 */
 	private Date publishedAt;
 	/**
-	 * Lista de ejemplares de este título, puede haber varias, pero un ejemplar sólo puede contener un tíulo
+	 * Lista de ejemplares de este tï¿½tulo, puede haber varias, pero un ejemplar sï¿½lo puede contener un tï¿½ulo
 	 */
 
 	@OneToMany(mappedBy = "itemInfo", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Item> items = new ArrayList<Item>();
 
 	 /**
-	    * Asignación manual del id
-	    * @param id identificador unívoco de la grabación audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	    * Asignaciï¿½n manual del id
+	    * @param id identificador unï¿½voco de la grabaciï¿½n audio {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	    * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
 	    * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
-	    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	    * @param publishedAt Fecha de publicaciï¿½n {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	    */
 	public Title(String id, String name, String author, Date publishedAt) {
 		super();
@@ -88,10 +88,10 @@ public class Title implements Serializable{
 		this.publishedAt = publishedAt;
 	}
 	  /**
-	    * Asigna automática el id
+	    * Asigna automï¿½tica el id
 	    * @param name Nombre	{@link edu.gitt.is.magiclibrary.model.entities.Title}
 	    * @param author Autor {@link edu.gitt.is.magiclibrary.model.entities.Title}
-	    * @param publishedAt Fecha de publicación {@link edu.gitt.is.magiclibrary.model.entities.Title}
+	    * @param publishedAt Fecha de publicaciï¿½n {@link edu.gitt.is.magiclibrary.model.entities.Title}
 	    */
 	public Title(String name, String author, Date publishedAt) {
 		super();
@@ -114,14 +114,14 @@ public class Title implements Serializable{
 	}
 /**
  * 
- * @return El identificador unívoco
+ * @return El identificador unï¿½voco
  */
 	public String getId() {
 		return id;
 	}
 /**
  * 
- * @return Nombre del título
+ * @return Nombre del tï¿½tulo
  */
 	public String getName() {
 		return name;
@@ -135,21 +135,21 @@ public class Title implements Serializable{
 	}
 	/**
 	 * 
-	 * @return Fecha de publicación
+	 * @return Fecha de publicaciï¿½n
 	 */
 	public Date getPublishedAt() {
 		return publishedAt;
 	}
 	/**
 	 * 
-	 * @return Lista de ejemplares de este título
+	 * @return Lista de ejemplares de este tï¿½tulo
 	 */
 	public List<Item> getItems() {
 		return items;
 	}
 	/**
 	 * 
-	 * @param id Establece el identificador unívoco
+	 * @param id Establece el identificador unï¿½voco
 	 */
 	public void setId(String id) {
 		this.id=id;
@@ -157,7 +157,7 @@ public class Title implements Serializable{
 
 /**
  * 
- * @param name Nombre del título
+ * @param name Nombre del tï¿½tulo
  */
 	public void setName(String name) {
 		this.name = name;
@@ -173,21 +173,21 @@ public class Title implements Serializable{
 
 	/**
 	 * 
-	 * @param date Fecha de publicación 
+	 * @param date Fecha de publicaciï¿½n 
 	 */
 	public void setPublishedAt(Date date) {
 		this.publishedAt = date;
 	}
 	/**
-	 * @return Devuelve la fecha de publicación
-	 * @param date Fecha de publicación 
+	 * @return Devuelve la fecha de publicaciï¿½n
+	 * @param date Fecha de publicaciï¿½n 
 	 */
 	public Date getPublishedAt(Date date) {
 		return this.publishedAt;
 	}
 	/**
 	 * 
-	 * @param items Lista de ejemplares de este título
+	 * @param items Lista de ejemplares de este tï¿½tulo
 	 */
 	public void setItems(List<Item> items) {
 		this.items = items;
@@ -195,14 +195,14 @@ public class Title implements Serializable{
 
 	/**
 	 * 
-	 * @param item Nuevo ejemplar del título para añadir a la lista
+	 * @param item Nuevo ejemplar del tï¿½tulo para aï¿½adir a la lista
 	 */
 	public void addItem(Item item) {
 		this.items.add(item);
 		item.setTitle(this);
 	}
 	/**
-	 * Elimina un ejemplar concreto de este título
+	 * Elimina un ejemplar concreto de este tï¿½tulo
 	 * @param item ejemplar a eliminar
 	 */
 	public void deleteItem(Item item) {
